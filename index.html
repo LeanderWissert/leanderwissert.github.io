@@ -14,17 +14,21 @@
   </head>
 
   <body>
+
+    <div class="splash">
+      <h1 class="fade-in">Conway's Game Of Life</h1> 
+    </div>
+
     <div class="header">
       <div><img src="https://upload.wikimedia.org/wikipedia/commons/0/07/Game_of_life_pulsar.gif" alt="Welcome to Conway's Game Of Life" style="height: 80px;"></div>
-      <div><h1>Welcome to Conway's Game Of Life</h1></div>
+      <div><h1>Conway's Game Of Life</h1></div>
       </div>
-    <p>2023 by Leander Wissert - QI</p>
+    <p><h2>by Leander Wissert</h2> </p>
       <h3>Shortcuts:</h3>
       <p>
         <b>Style:</b><br>
-        - Press "f" for black background and white cells. <br>
-        - Press "g" for white background and black cells. <br> 
-        - Press "h" for the best colormode! <br> 
+        - Press "f","h","g" for different colormodes. <br>
+
         - Press "o" and "p" to change the shape of the cells. <br>
         <b>General:</b><br>
         - Press"j" to Start. <br>
@@ -33,12 +37,10 @@
         - Press "c" to clear the canvas. <br>
         - Press "r" to randomly place cells on the canvas. <br> 
         <b>Resolution:</b><br>
-        - Press "a" to increase the resolution. <br>
-        - Press "s" to decrease the resolution. <br>
-        -Press "d" to reset the resolution. <br>  
+        - Press "a" and "s" to in- and decrease the resolution. <br>
+        - Press "d" to reset the resolution. <br>  
         <b>Size of the Canvas:</b><br>
-        - Press "q" to increase the size of the canvas. <br>
-        - Press "w" to decrease the size of the canvas. <br>
+        - Press "q" and "w" to in- and decrease the size of the canvas. <br>
         - Press "e" to reset the size of the canvas. <br>   
       </div></div>
       </p>
@@ -51,6 +53,11 @@
     <script src="life.js"></script>
   </div>
   <div>
+       <b>Style:</b><br>
+        <input class="button" type="button" onclick="colorMode1()" value="White Cells (Default)">
+        <input class="button" type="button" onclick="colorMode2()" value="Black Cells">
+        <input class="button" type="button" onclick="colorMode3()" value="Disorder">
+        <input class="button" type="button" onclick="edgeRounding()" value="▢" id="roundOffButton"><br>
         <b>Resolution:</b><br>
         <input class="button" type="button" onclick="resUp()" value="Resolution++">
         <input class="button" type="button" onclick="resDown()" value="Resoulution--">
@@ -60,7 +67,7 @@
         <input class="button" type="button" onclick="setResTo15()" value="Res = 15">
         <input class="button" type="button" onclick="setResTo20()" value="Res = 20">
         <input class="button" type="button" onclick="setResTo30()" value="Res = 30"><br>
-        <input type="range" id="resolution-slider" min="1" max="150" value="50"><br>
+        Set Resolution:&nbsp&nbsp&nbsp<input type="range" id="resolution-slider" min="1" max="150" value="50"><br>
         <input type="text" id="Resolution" name="Resolution" placeholder="Custom Resolution"> 
         <input type="button" onclick="setResTo(document.getElementById('Resolution').value)" value="Display New Canvas"> <br>
      
@@ -73,7 +80,7 @@
         <input class="button" type="button" onclick="setCanvasTo1500()" value="1500 x 1500"><br>
         <input type="text" id="canvasWidth" name="canvasWidth" placeholder="Custom Canvas Width">
         <input type="text" id="canvasHeight" name="canasHeight" placeholder="Custom Canvas Height">
-        <input type="button" onclick="setCanvasTo(document.getElementById('canvasWidth').value, document.getElementById('canvasWidth').value)" value="Display New Canvas"><br>
+        <input type="button" onclick="setCanvasTo(document.getElementById('canvasWidth').value, document.getElementById('canvasWidth').value)" value="Display New Canvas"><br> <!-- this is so cool -->
      
         <b>General commands:</b><br>
         <input class="button" type="button" onclick="startSim()" value="Start">
@@ -81,7 +88,7 @@
         <input class="button" type="button" onclick="nextGen()" value="+1 Generation">
         <input class="button" type="button" onclick="clearCanvas()" value="Clear">
         <input class="button" type="button" onclick="randomCanvas()" value="Random">
-        <input class="button" type="button" onclick="edgeRounding()" value="▢" id="roundOffButton"><br>
+        
 
         <table>
           <td>Generation</td><td><p id="generation-count"></p></td><td>

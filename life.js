@@ -2,7 +2,8 @@ let grid;
 let cols;
 let rows;
 let res = 15; 
-let start = 0;
+let start = false;
+let nextgen = false;
 let roundOff = 1;
 let canvasWidth = Math.floor(window.innerWidth);  //CANVAS: Math.floor: rounds down to highest integer
 let canvasHeight = Math.floor(window.innerHeight);
@@ -10,7 +11,7 @@ let playing = false;
 let shape;
 let generation = 0;
 let clear = false;
-let mouse = 0;
+let mouse = false;
 let h1=0;
 let s1=0;
 let b1=0;
@@ -20,10 +21,23 @@ let b2=100;
 let aliveCells = 0;
 let deadCells = 0;
 
+const splash = document.querySelector(".splash");
+document.addEventListener("DOMContentLoaded", (e) =>{
+  setTimeout(()=>{
+    splash.classList.add('display-none');
+  }, 2000);
+})
+
 /*TODO: 
--place objects
--display number of dead and alive cells
--slider for resolution
+-place objects!!!!!!!!
+-finites feld!!!!!!!!
+-help screen(!!!!!)
+-andere regeln? -> customizable/changeable ruleset 
+-zoomen funktion - lupe??
+-hintergrundmusik?
+-cookies/popup/startscreen?!
+css
+-Geschwindigkeit anpassbar
 */
 
 function preload() {
@@ -59,20 +73,16 @@ function setup() {
       }
     }
   }
-  countAliveCells(grid);
+  countCells(grid);
 }
-
 
 function draw() {
   if(key==="f"){
-    h1=0;s1=0;b1=0;h2=0;s2=0;b2=100;
-    print("COLORMODE CHANGED TO BW");} //colormode 1 BW
+    colorMode1();}
   else if(key==="g"){
-    h1=0;s1=0;b1=100;h2=0;s2=0;b2=0;
-    print("COLORMODE CHANGED TO WB");} //colormode 2 - WB
+    colorMode2();}
   else if(key==="h"){
-    h1=276;s1=100;b1=50;h2=180;s2=100;b2=100;
-    print("COLORMODE CHANGED TO QI");} //colormode 3 - QI
+    colorMode3();}
   background(h1,s1,b1);
   //draw
   for(let i=0; i<cols; i++){
@@ -85,14 +95,14 @@ function draw() {
         rect(x, y, res-1, res-1, roundOff*(res/2));
       }
       if ((i*res<mouseX) && (mouseX<(i + 1)*res) && (j*res<mouseY) && (mouseY<(j + 1)*res)) { //mouse on canvas/array?
-        if (mouse == 1) { //mouse == 1 when mousePressed
+        if (mouse == true) { 
             grid[i][j] = (grid[i][j] + 1) % 2; //when 0 --> 1, when 1 --> 0
-            mouse = 0;
+            mouse = false;
         }
       }
     }
   } 
-  if(start == 1 || start == 2) {
+  if(start == true || nextgen == true) {
     let next = makeNewGrid (cols, rows);
 
     //Calculate next based on old grid
@@ -114,15 +124,15 @@ function draw() {
         }
       }
     }
-    if(start == 2){
-      start = 0;
+    if(nextgen == true){
+      start = false;
+      nextgen = false;
     }
     generation++;
     //print(generation);
     grid = next;
-    let genCountDiv = document.getElementById("generation-count");
-    genCountDiv.innerHTML = generation;  //GEN COUNT IN HTML
-    countAliveCells(grid);
+    countGens();  
+    countCells(grid);
   }
   if(key==="o"){
     roundOff = 0;
@@ -132,7 +142,12 @@ function draw() {
   }
 }
 
-function countAliveCells(grid){
+function countGens() {
+  let genCountDiv = document.getElementById("generation-count");
+  genCountDiv.innerHTML = generation;
+}
+
+function countCells(grid){
   let aliveCells = 0;
   let deadCells = 0;
   for(let i = 0; i < cols; i++){
@@ -144,7 +159,7 @@ function countAliveCells(grid){
       }
     }
   }
-  print("DEAD:" + deadCells + "ALIVE:" + aliveCells);
+  //print("DEAD:" + deadCells + " ALIVE:" + aliveCells);
   document.getElementById("currentDead").innerHTML = deadCells;
   document.getElementById("currentAlive").innerHTML = aliveCells;
 }
@@ -164,41 +179,67 @@ function countNeighbors(grid, x, y) {
   return sum;
 }
 
-//---------------------------kUSER INTERACTIONS
+function colorMode1(){
+  h1=0;s1=0;b1=0;h2=0;s2=0;b2=100;
+  print("COLORMODE CHANGED TO BW");} // BW
+function colorMode2(){
+  h1=0;s1=0;b1=100;h2=0;s2=0;b2=0;
+  print("COLORMODE CHANGED TO WB");} // WB
+function colorMode3(){
+  h1=276;s1=100;b1=50;h2=180;s2=100;b2=100;
+  print("COLORMODE CHANGED TO QI");} // QI
+
+
+//---------------------------USER INTERACTIONS
 
 function mousePressed() {
-  mouse = (mouse + 1) % 2;
+  mouse = true;
 }
 
 function keyTyped() {
-  if(key==="j"){startSim();}
-  if(key==="k"){stopSim();}
-  if(key==="l"){nextGen();}
-  if(key==="c"){clearCanvas();}
-  if(key==="r"){randomCanvas();}
-  if(key==="a"){resUp();}
-  if(key==="s"){resDown();}
-  if(key==="d"){resRes();}
-  if(key==="q"){canvasUp();}
-  if(key==="w"){canvasDown();}
-  if(key==="e"){canvasRes();}
+  if(key==="j"){
+    startSim();}
+  if(key==="k"){
+    stopSim();}
+  if(key==="l"){
+    nextGen();}
+  if(key==="c"){
+    clearCanvas();}
+  if(key==="r"){
+    randomCanvas();}
+  if(key==="a"){
+    resUp();}
+  if(key==="s"){
+    resDown();}
+  if(key==="d"){
+    resRes();}
+  if(key==="q"){
+    canvasUp();}
+  if(key==="w"){
+    canvasDown();}
+  if(key==="e"){
+    canvasRes();}
 
 }
 function startSim(){
-  start = 1;
+  start = true;
   print("SIMULATION STARTED");}
 function stopSim(){
-  start = 0;
+  start = false;
   print("SIMULATION STOPPED");}
 function nextGen(){
-  start = 2;
+  nextgen = true;
   print("NEXT GENERATION");}
 function clearCanvas(){
   clear = true;
+  generation = 0;
+  countGens();
   setup();
   print("CANVAS CLEARED");}
 function randomCanvas(){
   clear = false; 
+  generation = 0;
+  countGens();
   setup();
   print("RANDOM CANVAS");}
 function edgeRounding(){
