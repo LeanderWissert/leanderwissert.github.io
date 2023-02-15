@@ -5,8 +5,8 @@ let res = 15;
 let start = false; 
 let nextgen = false;
 let roundOff = 1;
-let canvasWidth = Math.floor(window.innerWidth)-20;  //CANVAS: Math.floor: rounds down to highest integer
-let canvasHeight = Math.floor(window.innerHeight)-20;
+let canvasWidth = Math.floor(window.innerWidth);  //CANVAS: Math.floor: rounds down to highest integer
+let canvasHeight = Math.floor(window.innerHeight);
 let playing = false;
 let shape;
 let generation = 0;
@@ -29,20 +29,6 @@ document.addEventListener("DOMContentLoaded", (e) =>{  //waiting for html to loa
     splash.classList.add('display-none'); //hiding element bhind page
   }, 2000); 
 })
-
-/*TODO: 
--place objects!!!!!!!!
--help screen(!!!!!)
--andere regeln? -> customizable/changeable ruleset 
--zoomen funktion - lupe??
--hintergrundmusik?
--cookies/popup
-css
--Geschwindigkeit anpassbar
-
-WHAT NEEDS MORE BOOL OR LET
-*/
-//setFrameRateTo(document.getElementById('framerate').value)
 
 function preload() {
   Sans = loadFont('OpenSans-Regular.ttf');
