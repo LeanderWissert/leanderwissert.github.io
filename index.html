@@ -16,7 +16,7 @@
   <body>
 
     <div class="splash">
-      <h1 class="fade-in">Conway's Game Of Life</h1> 
+      <h1 class="fade-in">conway's game of life</h1> 
     </div>
 
     <div class="header">
@@ -54,11 +54,14 @@
   </div>
   <div>
        <b>Style:</b><br>
+
         <input class="button" type="button" onclick="colorMode1()" value="White Cells (Default)">
         <input class="button" type="button" onclick="colorMode2()" value="Black Cells">
         <input class="button" type="button" onclick="colorMode3()" value="Disorder">
         <input class="button" type="button" onclick="edgeRounding()" value="▢" id="roundOffButton"><br>
+
         <b>Resolution:</b><br>
+
         <input class="button" type="button" onclick="resUp()" value="Resolution++">
         <input class="button" type="button" onclick="resDown()" value="Resoulution--">
         <input class="button" type="button" onclick="resRes()" value="Reset Resolution"><br>
@@ -72,6 +75,7 @@
         <input type="button" onclick="setResTo(document.getElementById('Resolution').value)" value="Display New Canvas"> <br>
      
         <b>Canvas Size:</b><br>
+
         <input class="button" type="button" onclick="canvasUp()" value="Canvas += 100">
         <input class="button" type="button" onclick="canvasDown()" value="Canvas -= 100">
         <input class="button" type="button" onclick="canvasRes()" value="Reset Canvas Size"><br>
@@ -79,15 +83,18 @@
         <input class="button" type="button" onclick="setCanvasTo1000()" value="1000 x 1000">
         <input class="button" type="button" onclick="setCanvasTo1500()" value="1500 x 1500"><br>
         <input type="text" id="canvasWidth" name="canvasWidth" placeholder="Custom Canvas Width">
-        <input type="text" id="canvasHeight" name="canasHeight" placeholder="Custom Canvas Height">
+        <input type="text" id="canvasHeight" name="canvasHeight" placeholder="Custom Canvas Height">
         <input type="button" onclick="setCanvasTo(document.getElementById('canvasWidth').value, document.getElementById('canvasWidth').value)" value="Display New Canvas"><br> <!-- this is so cool -->
      
-        <b>General commands:</b><br>
+        <b>General:</b><br>
+
         <input class="button" type="button" onclick="startSim()" value="Start">
         <input class="button" type="button" onclick="stopSim()" value="Stop">
         <input class="button" type="button" onclick="nextGen()" value="+1 Generation">
         <input class="button" type="button" onclick="clearCanvas()" value="Clear">
         <input class="button" type="button" onclick="randomCanvas()" value="Random">
+        <input class="button" type="button" onclick="makeTorodial()" value="Torodial Field">
+        <input class="button" type="button" onclick="makeFinite()" value="Finite Field">
         
 
         <table>

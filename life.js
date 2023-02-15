@@ -2,11 +2,11 @@ let grid;
 let cols;
 let rows;
 let res = 15; 
-let start = false;
+let start = false; 
 let nextgen = false;
 let roundOff = 1;
-let canvasWidth = Math.floor(window.innerWidth);  //CANVAS: Math.floor: rounds down to highest integer
-let canvasHeight = Math.floor(window.innerHeight);
+let canvasWidth = Math.floor(window.innerWidth)-20;  //CANVAS: Math.floor: rounds down to highest integer
+let canvasHeight = Math.floor(window.innerHeight)-20;
 let playing = false;
 let shape;
 let generation = 0;
@@ -20,25 +20,29 @@ let s2=0;
 let b2=100;
 let aliveCells = 0;
 let deadCells = 0;
+let torodial = true;
 
-const splash = document.querySelector(".splash");
-document.addEventListener("DOMContentLoaded", (e) =>{
-  setTimeout(()=>{
-    splash.classList.add('display-none');
-  }, 2000);
+
+const splash = document.querySelector(".splash"); //splash = html element with splash class 
+document.addEventListener("DOMContentLoaded", (e) =>{  //waiting for html to load, e passes obj onto func
+  setTimeout(() => { 
+    splash.classList.add('display-none'); //hiding element bhind page
+  }, 2000); 
 })
 
 /*TODO: 
 -place objects!!!!!!!!
--finites feld!!!!!!!!
 -help screen(!!!!!)
 -andere regeln? -> customizable/changeable ruleset 
 -zoomen funktion - lupe??
 -hintergrundmusik?
--cookies/popup/startscreen?!
+-cookies/popup
 css
 -Geschwindigkeit anpassbar
+
+WHAT NEEDS MORE BOOL OR LET
 */
+//setFrameRateTo(document.getElementById('framerate').value)
 
 function preload() {
   Sans = loadFont('OpenSans-Regular.ttf');
@@ -105,29 +109,51 @@ function draw() {
   if(start == true || nextgen == true) {
     let next = makeNewGrid (cols, rows);
 
-    //Calculate next based on old grid
-    for(let i=0; i<cols; i++){
-      for(let j=0; j<rows; j++){
-        let state = grid[i][j];
+    if(torodial == true){
+      //Calculate next based on old grid
+      for(let i=0; i<cols; i++){
+       for(let j=0; j<rows; j++){
+         let state = grid[i][j];
 
-        //Count live neighbors
-        let sum = 0;
-        let neighbors = countNeighbors(grid,i,j);
+          let sum = 0;
+          let neighbors = countNeighborsTorodial(grid,i,j)
 
-        //RULES
-        if(state == 0 && neighbors == 3) {
-          next[i][j] = 1; //if dead and 3 near next alive
-        } else if (state == 1 && (neighbors < 2 || neighbors > 3)){
-          next[i][j] = 0; //if alive and either less then 2 or more than 3 dead
-        } else { //else stay
-          next[i][j] = state;
+         //RULES
+         if(state == 0 && neighbors == 3) {
+           next[i][j] = 1; //if dead and 3 near next alive
+         } else if (state == 1 && (neighbors < 2 || neighbors > 3)){
+            next[i][j] = 0; //if alive and either less then 2 or more than 3 dead
+         } else { //else stay
+           next[i][j] = state;
+          }
+        }
+      }
+    } else {
+      for(let i=0; i<cols; i++){
+        for(let j=0; j<rows; j++){
+          let state = grid[i][j];
+          if(i==0 || i==cols-1 || j==0 || j==rows-1){ //cells on edge die
+            next[i][j] = 0;
+          } else {
+            let sum = 0;
+            let neighbors = countNeighborsFinite(grid,i,j);
+
+            //RULES
+            if(state == 0 && neighbors == 3) {
+              next[i][j] = 1; //if dead and 3 near next alive
+            } else if (state == 1 && (neighbors < 2 || neighbors > 3)){
+              next[i][j] = 0; //if alive and either less then 2 or more than 3 dead
+            } else { //else stay
+              next[i][j] = state;
+            }
+          }
         }
       }
     }
     if(nextgen == true){
       start = false;
       nextgen = false;
-    }
+      }
     generation++;
     //print(generation);
     grid = next;
@@ -138,9 +164,45 @@ function draw() {
     roundOff = 0;
   }
   if(key === "p"){
-    roundOff = 1;
+   roundOff = 1;
   }
 }
+
+function countNeighborsTorodial(grid, x, y) {
+  let sum = 0;
+  for(let i=-1; i<2; i++) {
+    for (let j=-1; j<2; j++) {
+
+      let col = (x + i + cols) % cols; //due to wrapparound shifting rows and cols to the other side
+      let row = (y + j + rows) % rows; //p.e.: (9+1+10 % 10 = 0) -> 9th element in row was shifted to 1st in nexte gen
+
+      sum += grid[col][row];
+    }
+  }
+  sum -= grid[x][y]; //only neighbors -> substract yourself from sum
+  return sum;
+}
+
+function countNeighborsFinite(grid, x, y){
+  let sum = 0;
+  for(let i=-1; i<2; i++){
+    for(let j=-1; j<2; j++){
+      sum += grid[x+i][y+j];
+    }
+  }
+  sum -= grid[x][y]; //only neighbors -> substract yourself from sum
+  return sum;
+}
+
+function colorMode1(){
+  h1=0;s1=0;b1=0;h2=0;s2=0;b2=100;
+  print("COLORMODE CHANGED TO BW");} // BW
+function colorMode2(){
+  h1=0;s1=0;b1=100;h2=0;s2=0;b2=0;
+  print("COLORMODE CHANGED TO WB");} // WB
+function colorMode3(){
+  h1=276;s1=100;b1=50;h2=180;s2=100;b2=100;
+  print("COLORMODE CHANGED TO QI");} // QI
 
 function countGens() {
   let genCountDiv = document.getElementById("generation-count");
@@ -164,33 +226,18 @@ function countCells(grid){
   document.getElementById("currentAlive").innerHTML = aliveCells;
 }
 
-function countNeighbors(grid, x, y) {
-  let sum = 0;
-  for(let i=-1; i<2; i++) {
-    for (let j=-1; j<2; j++) {
-
-      let col = (x + i + cols) % cols; //due to wrapparound shifting rows and cols to the other side
-      let row = (y + j + rows) % rows; //p.e.: (9+1+10 % 10 = 0) -> 9th element in row was shifted to 1st in nexte gen
-
-      sum += grid[col][row];
-    }
-  }
-  sum -= grid[x][y];
-  return sum;
-}
-
-function colorMode1(){
-  h1=0;s1=0;b1=0;h2=0;s2=0;b2=100;
-  print("COLORMODE CHANGED TO BW");} // BW
-function colorMode2(){
-  h1=0;s1=0;b1=100;h2=0;s2=0;b2=0;
-  print("COLORMODE CHANGED TO WB");} // WB
-function colorMode3(){
-  h1=276;s1=100;b1=50;h2=180;s2=100;b2=100;
-  print("COLORMODE CHANGED TO QI");} // QI
-
-
 //---------------------------USER INTERACTIONS
+
+function makeTorodial(){
+  torodial = true;
+  //setup(); 
+  print("CHANGED TO TORODIAL FIELD");
+}
+function makeFinite(){
+  torodial = false;
+  //setup();
+  print("CHANGED TO FINITE FIELD");
+}
 
 function mousePressed() {
   mouse = true;
@@ -223,25 +270,30 @@ function keyTyped() {
 }
 function startSim(){
   start = true;
-  print("SIMULATION STARTED");}
+  print("SIMULATION STARTED");
+}
 function stopSim(){
   start = false;
-  print("SIMULATION STOPPED");}
+  print("SIMULATION STOPPED");
+}
 function nextGen(){
   nextgen = true;
-  print("NEXT GENERATION");}
+  print("NEXT GENERATION");
+}
 function clearCanvas(){
   clear = true;
   generation = 0;
   countGens();
   setup();
-  print("CANVAS CLEARED");}
+  print("CANVAS CLEARED");
+}
 function randomCanvas(){
   clear = false; 
   generation = 0;
   countGens();
   setup();
-  print("RANDOM CANVAS");}
+  print("RANDOM CANVAS");
+}
 function edgeRounding(){
   if (roundOff == 1) {
       roundOff = 0;
@@ -291,15 +343,20 @@ function canvasRes(){
   print("CANVAS SIZE WAS RESET");
 }
 function setResTo5(){
-  res=5; setup();print("RESOLUTION SET TO 5");}
+  res=5; setup();print("RESOLUTION SET TO 5");
+}
 function setResTo10(){
-  res=10; setup();print("RESOLUTION SET TO 10");}
+  res=10; setup();print("RESOLUTION SET TO 10");
+}
 function setResTo15(){
-  res=15; setup();print("RESOLUTION SET TO 15");}
+  res=15; setup();print("RESOLUTION SET TO 15");
+}
 function setResTo20(){
-  res=20; setup();print("RESOLUTION SET TO 20");}
+  res=20; setup();print("RESOLUTION SET TO 20");
+}
 function setResTo30(){
-  res=30; setup();print("RESOLUTION SET TO 30");}
+  res=30; setup();print("RESOLUTION SET TO 30");
+}
 
 function setCanvasTo400(){
   canvasHeight = 400;
