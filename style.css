@@ -8,6 +8,9 @@ body {
 ::placeholder {
   font-family: monospace;
 }
+.button {
+  font-family: monospace;
+}
 
 
 canvas {
