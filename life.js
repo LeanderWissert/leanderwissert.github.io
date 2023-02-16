@@ -37,7 +37,6 @@ document.addEventListener("DOMContentLoaded", (e) =>{  //waiting for html to loa
 -zoomen funktion - lupe??
 -hintergrundmusik?
 -cookies/popup
--css -> Buttons doch schöner maken?
 */
 
 function preload() {
