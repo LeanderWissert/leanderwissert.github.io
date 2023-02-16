@@ -27,8 +27,18 @@ const splash = document.querySelector(".splash"); //splash = html element with s
 document.addEventListener("DOMContentLoaded", (e) =>{  //waiting for html to load, e passes obj onto func
   setTimeout(() => { 
     splash.classList.add('display-none'); //hiding element bhind page
-  }, 2000); 
+  }, 500); 
 })
+
+/*TODO: 
+-place objects!!!!!!!!
+-help screen(!!!!!)
+-andere regeln? -> customizable/changeable ruleset 
+-zoomen funktion - lupe??
+-hintergrundmusik?
+-cookies/popup
+-css -> Buttons doch schöner maken?
+*/
 
 function preload() {
   Sans = loadFont('OpenSans-Regular.ttf');
@@ -45,7 +55,10 @@ function makeNewGrid(cols, rows){
 function setup() {
   colorMode(HSB);
   createCanvas(canvasWidth, canvasHeight);
+  generation = 0;
+  countGens();
 
+  document.getElementById("currentField").innerHTML = "Torodial";
   document.getElementById("currentRes").innerHTML = res;
   document.getElementById("currentSize").innerHTML = canvasWidth + " × " + canvasHeight;
 
@@ -67,11 +80,11 @@ function setup() {
 }
 
 function draw() {
-  if(key==="f"){
+  if(key==="b"){
     colorMode1();}
-  else if(key==="g"){
+  else if(key==="n"){
     colorMode2();}
-  else if(key==="h"){
+  else if(key==="m"){
     colorMode3();}
   background(h1,s1,b1);
   //draw
@@ -218,11 +231,13 @@ function makeTorodial(){
   torodial = true;
   //setup(); 
   print("CHANGED TO TORODIAL FIELD");
+  document.getElementById("currentField").innerHTML = "Torodial";
 }
 function makeFinite(){
   torodial = false;
   //setup();
   print("CHANGED TO FINITE FIELD");
+  document.getElementById("currentField").innerHTML = "Finite";
 }
 
 function mousePressed() {
@@ -230,29 +245,20 @@ function mousePressed() {
 }
 
 function keyTyped() {
-  if(key==="j"){
+  if(key==="a"){
     startSim();}
-  if(key==="k"){
+  if(key==="s"){
     stopSim();}
-  if(key==="l"){
+  if(key==="d"){
     nextGen();}
   if(key==="c"){
     clearCanvas();}
   if(key==="r"){
     randomCanvas();}
-  if(key==="a"){
-    resUp();}
-  if(key==="s"){
-    resDown();}
-  if(key==="d"){
-    resRes();}
-  if(key==="q"){
-    canvasUp();}
-  if(key==="w"){
-    canvasDown();}
-  if(key==="e"){
-    canvasRes();}
-
+  if(key==="t"){
+    makeTorodial();}
+  if(key==="f"){
+    makeFinite();}
 }
 function startSim(){
   start = true;
@@ -268,14 +274,12 @@ function nextGen(){
 }
 function clearCanvas(){
   clear = true;
-  generation = 0;
   countGens();
   setup();
   print("CANVAS CLEARED");
 }
 function randomCanvas(){
-  clear = false; 
-  generation = 0;
+  clear = false;
   countGens();
   setup();
   print("RANDOM CANVAS");
@@ -319,8 +323,8 @@ function canvasDown(){
     setup();
     print("CANVAS SIZE DECREASED BY 100");
   } else {
-    alert("MINIMAL CANVAS SIZE REACHED.");
-  }
+    alertNeg();
+    }
 }
 function canvasRes(){
   canvasWidth = Math.floor(window.innerWidth); 
@@ -337,13 +341,6 @@ function setResTo10(){
 function setResTo15(){
   res=15; setup();print("RESOLUTION SET TO 15");
 }
-function setResTo20(){
-  res=20; setup();print("RESOLUTION SET TO 20");
-}
-function setResTo30(){
-  res=30; setup();print("RESOLUTION SET TO 30");
-}
-
 function setCanvasTo400(){
   canvasHeight = 400;
   canvasWidth = 400; 
@@ -364,13 +361,15 @@ function setCanvasTo1500(){
 }
 function setCanvasTo(xC, yC) {
   let ganzeZahl = true;
-  if (xC % 1 != 0) {
-      alert("ENTER AN INTEGER.");
-      ganzeZahl = false;
-  } if (yC % 1 != 0) {
-      alert("ENTER AN INTEGER.");
-      ganzeZahl = false;
-  } else if (ganzeZahl == true) {
+  let positive = true;
+  if(xC<0 || yC<0){
+    positive = false;
+    alertNeg();
+  }
+  if(xC % 1 != 0 || yC % 1 != 0) {
+    alertInt();  
+    ganzeZahl = false;
+  } else if(ganzeZahl == true && positive == true) {
       canvasWidth = xC;
       canvasHeight = yC;
       print("CANVASSIZE SET TO "+ xC + " x " + yC );
@@ -379,10 +378,10 @@ function setCanvasTo(xC, yC) {
 }
 function setResTo(a) {
   let ganzeZahl = true;
-  if (a % 1 != 0) {
-      alert("ENTER AN INTEGER.");
-      ganzeZahl = false;
-  } else if (ganzeZahl == true) {
+  if(a % 1 != 0) {
+    alertInt();  
+    ganzeZahl = false;
+  } else if(ganzeZahl == true) {
       res = a;
       print("RESOLUTION SET TO "+ a);
       setup();
@@ -396,3 +395,42 @@ document.addEventListener("DOMContentLoaded", function() {
     setup();
   };
 });
+function alertInt(){
+  let r = floor(random(7));
+  if(r==0){
+    alert("Life is full of infinite possibilities, but canvas sizes aren't one of them. Please enter an integer value for the canvas size.");      
+  } else if(r==1){
+    alert("EMOTIONAL DAMAGE. enter an integer");
+  } else if(r==1){
+    alert("YOU ARE SUCH A FAILURE. enter an integer");
+  }else if(r==2){
+    alert("Life's resolution is not about the pixels, but the moments that make them. Please enter an integer value for the screen resolution and enjoy life's vivid details.")
+  }else if(r==3){
+    alert("Error 101: Life's resolution not found. Please set your screen resolution to an integer value and watch your life come into focus.")
+  }else if(r==4){
+    alert("Life is a journey full of twists and turns, but the screen resolution is not one of them. Please enter an integer value and let the game of life run smoothly.")
+  }else if(r==5){
+    alert("Non-integer resolution? That's a bit of a screen glitch. Please set your resolution to an integer value and enjoy life's vibrant display.")
+  }else if(r==6){
+    alert("Sorry, friend. Non-integer resolutions are not compatible with life's software. Please enter an integer value and see your life in high-definition clarity.")
+  }
+}
+function alertNeg(){
+  let r = floor(random(7));
+  if(r==0){
+    alert("Negativity has no place in the canvas of life. Please enter a positive value for canvas size.");
+  } else if(r==1){
+    alert("have you ever tried to drink -1 Paulaner Spazi? Me neither. Enter a positive value for the canvas size.")
+  }else if(r==2){
+    alert("Whoa there, friend! Negative canvas size? That's a real stroke of bad luck. Please enter a positive value and paint your life's masterpiece in a brighter hue.")
+  }else if(r==3){
+    alert("Error 404: Positive vibes not found. Please set your canvas size to a positive value and let the colors of life shine through.")
+  }else if(r==4){
+    alert("Life is a canvas that should be painted with bold strokes, not negative numbers. Please enter a positive value for the canvas size and let the game of life unfold in its own unique way.")
+  }else if(r==5){
+    alert("Negative canvas size? That's a real downer. Remember, life is a work of art and you're the artist. So keep your canvas positive and paint a picture of a happy, fulfilling life.")
+  }else if(r==6){
+    alert("Sorry, friend. Negative canvas size is not an option. Please choose a positive value and embrace the beauty of life's canvas.")
+  }
+}
+  

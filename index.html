@@ -27,25 +27,22 @@
       <h3>Shortcuts:</h3>
       <p>
         <b>Style:</b><br>
-        - Press "f","h","g" for different colormodes. <br>
-
+        - Press "b","n","m" for different colormodes. <br>
         - Press "o" and "p" to change the shape of the cells. <br>
         <b>General:</b><br>
-        - Press"j" to Start. <br>
-        - Press "k" to Stop. <br>
-        - Press "l" to see the next Generation. <br>
+        - Press "a" to Start. <br>
+        - Press "s" to Stop. <br>
+        - Press "d" to see the next Generation. <br>
         - Press "c" to clear the canvas. <br>
         - Press "r" to randomly place cells on the canvas. <br> 
-        <b>Resolution:</b><br>
-        - Press "a" and "s" to in- and decrease the resolution. <br>
-        - Press "d" to reset the resolution. <br>  
-        <b>Size of the Canvas:</b><br>
-        - Press "q" and "w" to in- and decrease the size of the canvas. <br>
-        - Press "e" to reset the size of the canvas. <br>   
+        - Press "t" for torodial Field (edges are connected)<br>
+        - Press "f" for finite Field (edges are cut off)<br>
+
       </div></div>
       </p>
 
-      <h3>Currently:</h3>
+
+      <b>Currently:<b>
 <table>
     <td>Resolution:</td><td><p id="currentRes"></p></td><td>
     </td><td></td><td>Canvas Size:</td></td><td><p id="currentSize"></p>
@@ -62,23 +59,21 @@
 
         <b>Resolution:</b><br>
 
+        <input class="button" type="button" onclick="resRes()" value="Reset Resolution">
         <input class="button" type="button" onclick="resUp()" value="Resolution++">
         <input class="button" type="button" onclick="resDown()" value="Resoulution--">
-        <input class="button" type="button" onclick="resRes()" value="Reset Resolution"><br>
         <input class="button" type="button" onclick="setResTo5()" value="Res = 5">
         <input class="button" type="button" onclick="setResTo10()" value="Res = 10">
-        <input class="button" type="button" onclick="setResTo15()" value="Res = 15">
-        <input class="button" type="button" onclick="setResTo20()" value="Res = 20">
-        <input class="button" type="button" onclick="setResTo30()" value="Res = 30"><br>
-        Set Resolution:&nbsp&nbsp&nbsp<input type="range" id="resolution-slider" min="1" max="150" value="50"><br>
+        <input class="button" type="button" onclick="setResTo15()" value="Res = 15"><br>
+        <input type="range" id="resolution-slider" min="1" max="150" value="50"><br>
         <input type="text" id="Resolution" name="Resolution" placeholder="Custom Resolution"> 
         <input type="button" onclick="setResTo(document.getElementById('Resolution').value)" value="Display New Canvas"> <br>
      
         <b>Canvas Size:</b><br>
 
+        <input class="button" type="button" onclick="canvasRes()" value="Reset Canvas Size">
         <input class="button" type="button" onclick="canvasUp()" value="Canvas += 100">
         <input class="button" type="button" onclick="canvasDown()" value="Canvas -= 100">
-        <input class="button" type="button" onclick="canvasRes()" value="Reset Canvas Size"><br>
         <input class="button" type="button" onclick="setCanvasTo400()" value="400 x 400">
         <input class="button" type="button" onclick="setCanvasTo1000()" value="1000 x 1000">
         <input class="button" type="button" onclick="setCanvasTo1500()" value="1500 x 1500"><br>
@@ -101,6 +96,7 @@
           <td>Generation</td><td><p id="generation-count"></p></td><td>
           </td><td></td><td>Population:</td></td><td><p id="currentAlive"></p>
           </td><td></td><td>Dead Cells:</td></td><td><p id="currentDead"></p>
+          </td><td></td><td>Field:</td></td><td><p id="currentField"></p>
       </table>
   </div>
   </body>
