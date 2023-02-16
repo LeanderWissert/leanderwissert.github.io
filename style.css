@@ -2,6 +2,13 @@ html, body {
   margin: 0;
   padding: 0;
 }
+body {
+  font-family: monospace;
+}
+::placeholder {
+  font-family: monospace;
+}
+
 
 canvas {
   display: block;
