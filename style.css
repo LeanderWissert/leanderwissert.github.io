@@ -21,6 +21,9 @@ input[type="button"] {
   color:rgb(0, 0, 0);
   background-color: aqua;
 }
+.text {
+  color: #000000;
+}
 canvas {
   display: block;
 }
