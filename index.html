@@ -85,17 +85,7 @@
       <input type="text" id="canvasHeight" name="canvasHeight" placeholder="Canvas Height">
       <input type="button" onclick="setCanvasTo(document.getElementById('canvasWidth').value, document.getElementById('canvasWidth').value)" value="Display New Canvas"><br> <!-- this is so cool -->
 
-      <b>General:</b><br>
-
-      <input class="button" type="button" onclick="startSim()" value="Start">
-      <input class="button" type="button" onclick="stopSim()" value="Stop">
-      <input class="button" type="button" onclick="nextGen()" value="+1 Generation">
-      <input class="button" type="button" onclick="clearCanvas()" value="Clear">
-      <input class="button" type="button" onclick="randomCanvas()" value="Random">
-      <input class="button" type="button" onclick="makeTorodial()" value="Torodial Field">
-      <input class="button" type="button" onclick="makeFinite()" value="Finite Field"><br>
-
-      <b>Patterns:</b><br>
+      <br><b>Patterns:</b><br>
       
       <input type="text" id="xPos" name="xPos" placeholder="x-position">
       <input type="text" id="yPos" name="yPos" placeholder="y-position"><br>
@@ -112,8 +102,32 @@
       <input type="button" onclick="insert(document.getElementById('xPos').value, document.getElementById('yPos').value, 8)" value="figure eight"> 
       <input type="button" onclick="insert(document.getElementById('xPos').value, document.getElementById('yPos').value, 9)" value="tumbler">
       <input type="button" onclick="insert(document.getElementById('xPos').value, document.getElementById('yPos').value, 10)" value="beacon"><br>
+      Gliders:
+      <input type="button" onclick="insert(document.getElementById('xPos').value, document.getElementById('yPos').value, 12)" value="gosper glider gun">
+      <input type="button" onclick="insert(document.getElementById('xPos').value, document.getElementById('yPos').value, 13)" value="glider ↘">
+      <input type="button" onclick="insert(document.getElementById('xPos').value, document.getElementById('yPos').value, 14)" value="glider ↗">
+      <input type="button" onclick="insert(document.getElementById('xPos').value, document.getElementById('yPos').value, 15)" value="glider ↖">
+      <input type="button" onclick="insert(document.getElementById('xPos').value, document.getElementById('yPos').value, 16)" value="glider ↙"><br>
+      Spaceships:
+      <input type="button" onclick="insert(document.getElementById('xPos').value, document.getElementById('yPos').value, 17)" value="loafer">
+      <input type="button" onclick="insert(document.getElementById('xPos').value, document.getElementById('yPos').value, 18)" value="weekender">
+      <input type="button" onclick="insert(document.getElementById('xPos').value, document.getElementById('yPos').value, 19)" value="copperhead">
+      <input type="button" onclick="insert(document.getElementById('xPos').value, document.getElementById('yPos').value, 20)" value="spaceship &#8592;"> 
+      <input type="button" onclick="insert(document.getElementById('xPos').value, document.getElementById('yPos').value, 21)" value="spaceship &#x2192;">
+      <input type="button" onclick="insert(document.getElementById('xPos').value, document.getElementById('yPos').value, 22)" value="spaceship &#x2191;">
+      <input type="button" onclick="insert(document.getElementById('xPos').value, document.getElementById('yPos').value, 23)" value="spaceship &#x2193;"><br>
+      <br>
 
-      <input type="button" onclick="insert(document.getElementById('xPos').value, document.getElementById('yPos').value, 12)" value="gosper glider gun"><br>
+
+      <br><b>General Commands:</b><br>
+
+      <input class="button" type="button" onclick="startSim()" value="Start">
+      <input class="button" type="button" onclick="stopSim()" value="Stop">
+      <input class="button" type="button" onclick="nextGen()" value="+1 Generation">
+      <input class="button" type="button" onclick="clearCanvas()" value="Clear">
+      <input class="button" type="button" onclick="randomCanvas()" value="Random">
+      <input class="button" type="button" onclick="makeTorodial()" value="Torodial Field">
+      <input class="button" type="button" onclick="makeFinite()" value="Finite Field"><br>
 
       <table>
         <td>Generation</td><td><p id="generation-count"></p></td><td>
