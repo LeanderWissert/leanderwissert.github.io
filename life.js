@@ -4,7 +4,7 @@ let rows;
 let res = 15; 
 let start = false; 
 let nextgen = false;
-let roundOff = 1;
+let roundCorners = 1;
 let canvasWidth = Math.floor(window.innerWidth);  //CANVAS: Math.floor: rounds down to highest integer
 let canvasHeight = Math.floor(window.innerHeight);
 let playing = false;
@@ -83,7 +83,7 @@ function draw() {
       if (grid[i][j] == 1){
         fill(h2,s2,b2);
         stroke(0);
-        rect(x, y, res-1, res-1, roundOff*(res/2));
+        rect(x, y, res-1, res-1, roundCorners*(res/2));
       }
       if ((i*res<mouseX) && (mouseX<(i + 1)*res) && (j*res<mouseY) && (mouseY<(j + 1)*res)) { //mouse on canvas/array?
         if (mouse == true) { 
@@ -148,10 +148,10 @@ function draw() {
     countCells(grid);
   }
   if(key==="o"){
-    roundOff = 0;
+    roundCorners = 0;
   }
   if(key === "p"){
-   roundOff = 1;
+   roundCorners = 1;
   }
 }
 
@@ -271,16 +271,13 @@ function randomCanvas(){
   setup();
   print("RANDOM CANVAS");
 }
-function edgeRounding(){
-  if (roundOff == 1) {
-      roundOff = 0;
-      print("CORNERS");
-      document.getElementById("roundOffButton").value = "◯";
-  } else if (roundOff == 0) {
-      roundOff = 1;
-      print("CIRCLES");
-      document.getElementById("roundOffButton").value = "▢";
-  }
+function corners(){
+  roundCorners = 0;
+  print("CORNERS");
+}
+function circles(){
+  roundCorners = 1;
+  print("CIRCLES");
 }
 function resUp(){
   res++;
