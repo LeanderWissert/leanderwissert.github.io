@@ -478,30 +478,3 @@ function alertNeg(){
 function alertOutOfField(){
   alert("Please enter a value for x and y that is inside the canvas.")
 }
-
-//-------------------MUSIC
-/*
-const songs = ['song1', 'song2', 'song3', 'song4', 'song5', 'song6', 'song7', 'song8'];
-let currentSong = 0;
-
-function playSong() {
-  const song = document.getElementById(songs[currentSong]);
-  song.play();
-}
-function nextSong() {
-  const song = document.getElementById(songs[currentSong]);
-  song.pause();
-  currentSong = (currentSong + 1) % songs.length;
-  playSong();
-}
-function pauseSong() {
-  const song = document.getElementById(songs[currentSong]);
-  song.pause();
-}
-function previousSong() {
-  const song = document.getElementById(songs[currentSong]);
-  song.pause();
-  currentSong = (currentSong - 1 + songs.length) % songs.length;
-  playSong();
-}
-*/
