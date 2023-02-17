@@ -39,6 +39,7 @@ document.addEventListener("DOMContentLoaded", (e) =>{  //waiting for html to loa
 -cookies/popup
 */
 
+
 function preload() {
   Sans = loadFont('OpenSans-Regular.ttf');
 }
@@ -223,9 +224,6 @@ function countCells(grid){
   document.getElementById("currentDead").innerHTML = deadCells;
   document.getElementById("currentAlive").innerHTML = aliveCells;
 }
-
-//---------------------------USER INTERACTIONS
-
 function makeTorodial(){
   torodial = true;
   //setup(); 
@@ -238,6 +236,8 @@ function makeFinite(){
   print("CHANGED TO FINITE FIELD");
   document.getElementById("currentField").innerHTML = "Finite";
 }
+
+//---------------------------USER INTERACTIONS
 
 function mousePressed() {
   mouse = true;
@@ -395,12 +395,12 @@ document.addEventListener("DOMContentLoaded", function() {
   };
 });
 function alertInt(){
-  let r = floor(random(7));
+  let r = floor(random(8));
   if(r==0){
     alert("Life is full of infinite possibilities, but canvas sizes aren't one of them. Please enter an integer value for the canvas size.");      
   } else if(r==1){
     alert("EMOTIONAL DAMAGE. enter an integer");
-  } else if(r==1){
+  } else if(r==7){
     alert("YOU ARE SUCH A FAILURE. enter an integer");
   }else if(r==2){
     alert("Life's resolution is not about the pixels, but the moments that make them. Please enter an integer value for the screen resolution and enjoy life's vivid details.")
@@ -415,11 +415,13 @@ function alertInt(){
   }
 }
 function alertNeg(){
-  let r = floor(random(7));
+  let r = floor(random(8));
   if(r==0){
     alert("Negativity has no place in the canvas of life. Please enter a positive value for canvas size.");
   } else if(r==1){
     alert("have you ever tried to drink -1 Paulaner Spazi? Me neither. Enter a positive value for the canvas size.")
+  }else if(r==7){
+    alert("EMOTIONAL DAMAGE. enter a positive value.");
   }else if(r==2){
     alert("Whoa there, friend! Negative canvas size? That's a real stroke of bad luck. Please enter a positive value and paint your life's masterpiece in a brighter hue.")
   }else if(r==3){

@@ -5,7 +5,6 @@ html, body {
 body {
   font-family: monospace;
   background-color: #1a1a1a;
-  color: #f0f0f0;
 }
 .button {
   font-family: monospace;
@@ -13,7 +12,6 @@ body {
 }
 ::placeholder {
   font-family: monospace;
-  background-color: aqua;
   color: #000000;
 }
 input[type="button"] {
@@ -37,6 +35,16 @@ h2, h3, h4, h5, h6 {
   display: table;
   clear: both;
 }
+.generalCommands-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #000000; /* optional */
+  border-top: 1px solid aqua; /* optional */
+  padding: 5px;
+}
+
 
 .splash{
   position: fixed;

@@ -33,22 +33,22 @@
         - Press "a" to Start. <br>
         - Press "s" to Stop. <br>
         - Press "d" to see the next Generation. <br>
+        ---<br>
         - Press "c" to clear the canvas. <br>
         - Press "r" to randomly place cells on the canvas. <br> 
+        ---<br>
         - Press "t" for torodial Field (edges are connected)<br>
         - Press "f" for finite Field (edges are cut off)<br>
 
       </div></div>
       </p>
-
-
       <b>Currently:<b>
 <table>
     <td>Resolution:</td><td><p id="currentRes"></p></td><td>
     </td><td></td><td>Canvas Size:</td></td><td><p id="currentSize"></p>
 </table>
-    <script src="life.js"></script>
   </div>
+  <div><script src="life.js"></script></div>
   <div>
        <b>Style:</b><br>
 
@@ -80,16 +80,8 @@
         <input type="text" id="canvasWidth" name="canvasWidth" placeholder="Custom Canvas Width">
         <input type="text" id="canvasHeight" name="canvasHeight" placeholder="Custom Canvas Height">
         <input type="button" onclick="setCanvasTo(document.getElementById('canvasWidth').value, document.getElementById('canvasWidth').value)" value="Display New Canvas"><br> <!-- this is so cool -->
-     
-        <b>General:</b><br>
 
-        <input class="button" type="button" onclick="startSim()" value="Start">
-        <input class="button" type="button" onclick="stopSim()" value="Stop">
-        <input class="button" type="button" onclick="nextGen()" value="+1 Generation">
-        <input class="button" type="button" onclick="clearCanvas()" value="Clear">
-        <input class="button" type="button" onclick="randomCanvas()" value="Random">
-        <input class="button" type="button" onclick="makeTorodial()" value="Torodial Field">
-        <input class="button" type="button" onclick="makeFinite()" value="Finite Field">
+
         
 
         <table>
@@ -98,6 +90,17 @@
           </td><td></td><td>Dead Cells:</td></td><td><p id="currentDead"></p>
           </td><td></td><td>Field:</td></td><td><p id="currentField"></p>
       </table>
+  </div>
+  <div class="generalCommands-container">
+    <b>General:</b><br>
+
+    <input class="button" type="button" onclick="startSim()" value="Start">
+    <input class="button" type="button" onclick="stopSim()" value="Stop">
+    <input class="button" type="button" onclick="nextGen()" value="+1 Generation">
+    <input class="button" type="button" onclick="clearCanvas()" value="Clear">
+    <input class="button" type="button" onclick="randomCanvas()" value="Random">
+    <input class="button" type="button" onclick="makeTorodial()" value="Torodial Field">
+    <input class="button" type="button" onclick="makeFinite()" value="Finite Field">
   </div>
   </body>
 </html>
