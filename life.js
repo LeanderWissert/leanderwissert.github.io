@@ -26,7 +26,7 @@ const splash = document.querySelector(".splash"); //splash = html element with s
 document.addEventListener("DOMContentLoaded", (e) =>{  //waiting for html to load, e passes obj onto func
   setTimeout(() => { 
     splash.classList.add('display-none'); //hiding element bhind page
-  }, 500); 
+  }, 1500); 
 })
 
 function preload() {
