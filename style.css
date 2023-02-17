@@ -3,27 +3,21 @@ html, body {
   padding: 0;
 }
 body {
-  font-family: monospace;
-  background-color: #1a1a1a;
+  font-family: sans-serif;
 }
 .button {
-  font-family: monospace;
-  color:rgb(0, 0, 0);
+  font-family: sans-serif;
 }
 ::placeholder {
-  font-family: monospace;
-  color: #000000;
+  font-family: sans-serif;
 }
 input[type="button"] {
-  font-family: monospace;
+  font-family: sans-serif;
   color:rgb(0, 0, 0);
   background-color: aqua;
 }
 canvas {
   display: block;
-}
-h2, h3, h4, h5, h6 {
-  color: #f0f0f0;
 }
 .column {
   float: left;
@@ -34,15 +28,6 @@ h2, h3, h4, h5, h6 {
   content: "";
   display: table;
   clear: both;
-}
-.generalCommands-container {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background-color: #000000; /* optional */
-  border-top: 1px solid aqua; /* optional */
-  padding: 5px;
 }
 
 
@@ -60,7 +45,7 @@ h2, h3, h4, h5, h6 {
   background-image:  url('https://raw.githubusercontent.com/LeanderWissert/leanderwissert.github.io/main/opera_JCmkhyALJX.jpg');
   background-repeat: no-repeat;
   background-size: cover;
-  font-family: monospace;
+  font-family: sans-serif;
 }
 
 .splash.display-none{

@@ -14,93 +14,113 @@
   </head>
 
   <body>
-
+    
     <div class="splash">
       <h1 class="fade-in">conway's game of life</h1> 
     </div>
 
     <div class="header">
-      <div><img src="https://upload.wikimedia.org/wikipedia/commons/0/07/Game_of_life_pulsar.gif" alt="Welcome to Conway's Game Of Life" style="height: 80px;"></div>
       <div><h1>Conway's Game Of Life</h1></div>
-      </div>
     <p><h2>by Leander Wissert</h2> </p>
-      <h3>Shortcuts:</h3>
-      <p>
-        <b>Style:</b><br>
-        - Press "b","n","m" for different colormodes. <br>
-        - Press "o" and "p" to change the shape of the cells. <br>
-        <b>General:</b><br>
-        - Press "a" to Start. <br>
-        - Press "s" to Stop. <br>
-        - Press "d" to see the next Generation. <br>
-        ---<br>
-        - Press "c" to clear the canvas. <br>
-        - Press "r" to randomly place cells on the canvas. <br> 
-        ---<br>
-        - Press "t" for torodial Field (edges are connected)<br>
-        - Press "f" for finite Field (edges are cut off)<br>
+    <p>For reference:   <a href="https://conwaylife.com/wiki/">Game Of Life Wiki</a></p>
+    music by @arl.quantum4.0
+    <h3>Shortcuts:</h3>
+    <p>
+    <b>Style:</b><br>
+    - Press "b","n","m" for different colormodes. <br>
+    - Press "o" and "p" to change the shape of the cells. <br>
+    <b>General:</b><br>
+    - Press "a" to Start. <br>
+    - Press "s" to Stop. <br>
+    - Press "d" to see the next Generation. <br>
+    ---<br>
+    - Press "c" to clear the canvas. <br>
+    - Press "r" to randomly place cells on the canvas. <br> 
+    ---<br>
+    - Press "t" for torodial Field (edges are connected)<br>
+    - Press "f" for finite Field (edges are cut off)<br>
 
-      </div></div>
       </p>
       <b>Currently:<b>
-<table>
-    <td>Resolution:</td><td><p id="currentRes"></p></td><td>
-    </td><td></td><td>Canvas Size:</td></td><td><p id="currentSize"></p>
-</table>
-  </div>
-  <div><script src="life.js"></script></div>
-  <div>
-       <b>Style:</b><br>
+    <table>
+      <td>Resolution:</td><td><p id="currentRes"></p></td><td>
+      </td><td></td><td>Canvas Size:</td></td><td><p id="currentSize"></p>
+    </table>
 
-        <input class="button" type="button" onclick="colorMode1()" value="White Cells (Default)">
-        <input class="button" type="button" onclick="colorMode2()" value="Black Cells">
-        <input class="button" type="button" onclick="colorMode3()" value="Disorder">
-        <input class="button" type="button" onclick="edgeRounding()" value="▢" id="roundOffButton"><br>
+    </div>
 
-        <b>Resolution:</b><br>
+    <div id="sketch-holder">
+      <script type="text/javascript" src="life.js"></script> 
+    </div>
 
-        <input class="button" type="button" onclick="resRes()" value="Reset Resolution">
-        <input class="button" type="button" onclick="resUp()" value="Resolution++">
-        <input class="button" type="button" onclick="resDown()" value="Resoulution--">
-        <input class="button" type="button" onclick="setResTo5()" value="Res = 5">
-        <input class="button" type="button" onclick="setResTo10()" value="Res = 10">
-        <input class="button" type="button" onclick="setResTo15()" value="Res = 15"><br>
-        <input type="range" id="resolution-slider" min="1" max="100" value="15"><br>
-        <input type="text" id="Resolution" name="Resolution" placeholder="Custom Resolution"> 
-        <input type="button" onclick="setResTo(document.getElementById('Resolution').value)" value="Display New Canvas"> <br>
+    <div class="buttonContainer">
+      <b>Style:</b><br>
+
+      <input class="button" type="button" onclick="colorMode1()" value="White Cells (Default)">
+      <input class="button" type="button" onclick="colorMode2()" value="Black Cells">
+      <input class="button" type="button" onclick="colorMode3()" value="Disorder">
+      <input class="button" type="button" onclick="edgeRounding()" value="▢" id="roundOffButton"><br>
+
+      <b>Resolution:</b><br>
+
+      <input class="button" type="button" onclick="resRes()" value="Reset Resolution">
+      <input class="button" type="button" onclick="resUp()" value="Resolution++">
+      <input class="button" type="button" onclick="resDown()" value="Resoulution--">
+      <input class="button" type="button" onclick="setResTo5()" value="Res = 5">
+      <input class="button" type="button" onclick="setResTo10()" value="Res = 10">
+      <input class="button" type="button" onclick="setResTo15()" value="Res = 15"><br>
+      <input type="range" id="resolution-slider" min="1" max="100" value="15"><br>
+      <input type="text" id="Resolution" name="Resolution" placeholder="Resolution"> 
+      <input type="button" onclick="setResTo(document.getElementById('Resolution').value)" value="Display New Canvas"> <br>
      
-        <b>Canvas Size:</b><br>
+      <b>Canvas Size:</b><br>
 
-        <input class="button" type="button" onclick="canvasRes()" value="Reset Canvas Size">
-        <input class="button" type="button" onclick="canvasUp()" value="Canvas += 100">
-        <input class="button" type="button" onclick="canvasDown()" value="Canvas -= 100">
-        <input class="button" type="button" onclick="setCanvasTo400()" value="400 x 400">
-        <input class="button" type="button" onclick="setCanvasTo1000()" value="1000 x 1000">
-        <input class="button" type="button" onclick="setCanvasTo1500()" value="1500 x 1500"><br>
-        <input type="text" id="canvasWidth" name="canvasWidth" placeholder="Custom Canvas Width">
-        <input type="text" id="canvasHeight" name="canvasHeight" placeholder="Custom Canvas Height">
-        <input type="button" onclick="setCanvasTo(document.getElementById('canvasWidth').value, document.getElementById('canvasWidth').value)" value="Display New Canvas"><br> <!-- this is so cool -->
+      <input class="button" type="button" onclick="canvasRes()" value="Reset Canvas Size">
+      <input class="button" type="button" onclick="canvasUp()" value="Canvas += 100">
+      <input class="button" type="button" onclick="canvasDown()" value="Canvas -= 100">
+      <input class="button" type="button" onclick="setCanvasTo400()" value="400 x 400">
+      <input class="button" type="button" onclick="setCanvasTo1000()" value="1000 x 1000">
+      <input class="button" type="button" onclick="setCanvasTo1500()" value="1500 x 1500"><br>
+      <input type="text" id="canvasWidth" name="canvasWidth" placeholder="Canvas Width">
+      <input type="text" id="canvasHeight" name="canvasHeight" placeholder="Canvas Height">
+      <input type="button" onclick="setCanvasTo(document.getElementById('canvasWidth').value, document.getElementById('canvasWidth').value)" value="Display New Canvas"><br> <!-- this is so cool -->
 
+      <b>General:</b><br>
 
-        
+      <input class="button" type="button" onclick="startSim()" value="Start">
+      <input class="button" type="button" onclick="stopSim()" value="Stop">
+      <input class="button" type="button" onclick="nextGen()" value="+1 Generation">
+      <input class="button" type="button" onclick="clearCanvas()" value="Clear">
+      <input class="button" type="button" onclick="randomCanvas()" value="Random">
+      <input class="button" type="button" onclick="makeTorodial()" value="Torodial Field">
+      <input class="button" type="button" onclick="makeFinite()" value="Finite Field"><br>
 
-        <table>
-          <td>Generation</td><td><p id="generation-count"></p></td><td>
-          </td><td></td><td>Population:</td></td><td><p id="currentAlive"></p>
-          </td><td></td><td>Dead Cells:</td></td><td><p id="currentDead"></p>
-          </td><td></td><td>Field:</td></td><td><p id="currentField"></p>
+      <b>Patterns:</b><br>
+      
+      <input type="text" id="xPos" name="xPos" placeholder="x-position">
+      <input type="text" id="yPos" name="yPos" placeholder="y-position"><br>
+      Methuselahs:
+      <input type="button" onclick="insert(document.getElementById('xPos').value, document.getElementById('yPos').value, 1)" value="r-pentomino"> 
+      <input type="button" onclick="insert(document.getElementById('xPos').value, document.getElementById('yPos').value, 2)" value="herschel"> 
+      <input type="button" onclick="insert(document.getElementById('xPos').value, document.getElementById('yPos').value, 3)" value="pi-heptomino">
+      <input type="button" onclick="insert(document.getElementById('xPos').value, document.getElementById('yPos').value, 4)" value="queen bee"> 
+      <input type="button" onclick="insert(document.getElementById('xPos').value, document.getElementById('yPos').value, 5)" value="wing"> 
+      <input type="button" onclick="insert(document.getElementById('xPos').value, document.getElementById('yPos').value, 6)" value="acorn"><br> 
+      Oszillators:
+      <input type="button" onclick="insert(document.getElementById('xPos').value, document.getElementById('yPos').value, 11)" value="blinker"> 
+      <input type="button" onclick="insert(document.getElementById('xPos').value, document.getElementById('yPos').value, 7)" value="octagon 2"> 
+      <input type="button" onclick="insert(document.getElementById('xPos').value, document.getElementById('yPos').value, 8)" value="figure eight"> 
+      <input type="button" onclick="insert(document.getElementById('xPos').value, document.getElementById('yPos').value, 9)" value="tumbler">
+      <input type="button" onclick="insert(document.getElementById('xPos').value, document.getElementById('yPos').value, 10)" value="beacon"><br>
+
+      <input type="button" onclick="insert(document.getElementById('xPos').value, document.getElementById('yPos').value, 12)" value="gosper glider gun"><br>
+
+      <table>
+        <td>Generation</td><td><p id="generation-count"></p></td><td>
+        </td><td></td><td>Population:</td></td><td><p id="currentAlive"></p>
+        </td><td></td><td>Dead Cells:</td></td><td><p id="currentDead"></p>
+        </td><td></td><td>Field:</td></td><td><p id="currentField"></p>
       </table>
-  </div>
-  <div class="generalCommands-container">
-    <b>General:</b><br>
-
-    <input class="button" type="button" onclick="startSim()" value="Start">
-    <input class="button" type="button" onclick="stopSim()" value="Stop">
-    <input class="button" type="button" onclick="nextGen()" value="+1 Generation">
-    <input class="button" type="button" onclick="clearCanvas()" value="Clear">
-    <input class="button" type="button" onclick="randomCanvas()" value="Random">
-    <input class="button" type="button" onclick="makeTorodial()" value="Torodial Field">
-    <input class="button" type="button" onclick="makeFinite()" value="Finite Field">
-  </div>
+    </div>
   </body>
 </html>

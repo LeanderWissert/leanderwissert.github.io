@@ -32,11 +32,9 @@ document.addEventListener("DOMContentLoaded", (e) =>{  //waiting for html to loa
 
 /*TODO: 
 -place objects!!!!!!!!
--help screen(!!!!!)
--andere regeln? -> customizable/changeable ruleset 
 -zoomen funktion - lupe??
--hintergrundmusik?
--cookies/popup
+-hintergrundmusik
+string dings parseint checken bei adnerne
 */
 
 
@@ -237,6 +235,46 @@ function makeFinite(){
   document.getElementById("currentField").innerHTML = "Finite";
 }
 
+//-------------------INSERT PATTERNS
+
+function insert(x,y,index){
+  x = parseInt(x);
+  y = parseInt(y);
+  if(index == 1){insertPattern = [[1,0,0],[1,1,1],[0,1,0]];} //rpent
+  if(index == 2){insertPattern = [[1,1,1,0],[0,1,0,0],[0,1,1,1]];} //herschel
+  if(index == 3){insertPattern = [[1,1,1],[1,0,0],[1,1,1]];} //piHept
+  if(index == 4){insertPattern = [[1,1,0,0,0,1,1],[0,0,1,1,1,0,0],[0,1,0,0,0,1,0],[0,0,1,0,1,0,0],[0,0,0,1,0,0,0]];} // queenbee
+  if(index == 5){insertPattern = [[0,1,0,0],[1,0,1,0],[1,0,0,1],[0,1,1,1]];} // wing
+  if(index == 6){insertPattern = [[0,0,1],[1,0,1],[0,0,0],[0,1,0],[0,0,1],[0,0,1],[0,0,1]];} //acorn
+  if(index == 7){insertPattern = [[0,1,1,1,1,0],[1,0,1,1,0,1],[1,1,0,0,1,1],[1,1,0,0,1,1],[1,0,1,1,0,1],[0,1,1,1,1,0]];} // octagon 2
+  if(index == 8){insertPattern = [[0,0,0,1,1,1],[0,0,0,1,1,1],[0,0,0,1,1,1],[1,1,1,0,0,0],[1,1,1,0,0,0],[1,1,1,0,0,0]];} // figure 8
+  if(index == 9){insertPattern = [[1,1,1,0,0,0],[1,0,0,0,1,1],[0,1,1,1,1,1],[0,0,0,0,0,0],[0,1,1,1,1,1],[1,0,0,0,1,1],[1,1,1,0,0,0]];} // tumbler
+  if(index == 10){insertPattern = [[1,1,0,0],[1,1,0,0],[0,0,1,1],[0,0,1,1]];} //beacon
+  if(index == 11){insertPattern = [[1,1,1]];} //blinker
+  if(index == 12){insertPattern = [[0,0,0,0,1,1,0,0,0],[0,0,0,0,1,1,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],
+    [0,0,0,0,1,1,1,0,0],[0,0,0,0,1,1,1,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,1,1,0,0,0,1,1],
+    [0,0,0,1,1,1,1,1,0],[0,0,0,0,1,1,1,0,0],[0,0,0,0,0,1,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[1,1,0,0,0,1,1,0,0],[0,0,1,1,1,0,0,0,0],
+    [0,1,0,0,0,1,0,0,0],[0,0,1,0,1,0,0,0,0],[0,0,0,1,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],
+    [0,0,1,1,0,0,0,0,0],[0,0,1,1,0,0,0,0,0]];} //gosper glider gun
+  if(x % 1 != 0 || y % 1 != 0){
+    alertInt();
+  } else if(x < 0 || y < 0){
+    alertNeg();
+  } else if(x>canvasWidth/res || y>canvasHeight/res){
+    alertOutOfField();
+  } 
+  else {
+    for(let i=0; i<insertPattern.length; i++) {
+      for(let j=0; j<insertPattern[i].length; j++) {
+        grid[y+i][x+j] = insertPattern[i][j];
+      }
+    }
+  }
+}
+
+
 //---------------------------USER INTERACTIONS
 
 function mousePressed() {
@@ -433,5 +471,8 @@ function alertNeg(){
   }else if(r==6){
     alert("Sorry, friend. Negative canvas size is not an option. Please choose a positive value and embrace the beauty of life's canvas.")
   }
+}
+function alertOutOfField(){
+  alert("Please enter a value for x and y that is inside the canvas.")
 }
   
