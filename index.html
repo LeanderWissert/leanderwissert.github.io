@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,6 +16,16 @@
 
   <body>
     
+  <!--  <audio id="song1" src="music/da_dap_da_da_3.mp3"></audio>
+    <audio id="song2" src="music/House1_2.mp3"></audio>
+    <audio id="song3" src="music/House2.mp3"></audio>
+    <audio id="song4" src="music/Jerk_2.mp3"></audio>
+    <audio id="song5" src="music/laaangsam_quasi.mp3"></audio>
+    <audio id="song6" src="music/Leander.mp3"></audio>
+    <audio id="song7" src="music/New_Project_3.mp3"></audio>
+    <audio id="song8" src="music/Vogel_Strauss.mp3"></audio>
+  -->
+
     <div class="splash">
       <h1 class="fade-in">conway's game of life</h1> 
     </div>
@@ -23,7 +34,11 @@
       <div><h1>Conway's Game Of Life</h1></div>
     <p><h2>by Leander Wissert</h2> </p>
     <p>For reference:   <a href="https://conwaylife.com/wiki/">Game Of Life Wiki</a></p>
-    music by @arl.quantum4.0
+    <!--music by @arl.quantum4.0 <br>
+    <input class="button" type="button" onclick="previousSong()" value="⏮">
+    <input class="button" type="button" onclick="pauseSong()" value="⏸">
+    <input class="button" type="button" onclick="playSong()" value="⏵">
+    <input class="button" type="button" onclick="nextSong()" value="⏭">-->
     <h3>Shortcuts:</h3>
     <p>
     <b>Style:</b><br>
@@ -60,7 +75,7 @@
       <input class="button" type="button" onclick="colorMode2()" value="Black Cells">
       <input class="button" type="button" onclick="colorMode3()" value="Disorder">
       <input class="button" type="button" onclick="edgeRounding()" value="▢" id="roundOffButton"><br>
-
+      <br>
       <b>Resolution:</b><br>
 
       <input class="button" type="button" onclick="resRes()" value="Reset Resolution">
@@ -72,7 +87,7 @@
       <input type="range" id="resolution-slider" min="1" max="100" value="15"><br>
       <input type="text" id="Resolution" name="Resolution" placeholder="Resolution"> 
       <input type="button" onclick="setResTo(document.getElementById('Resolution').value)" value="Display New Canvas"> <br>
-     
+      <br>
       <b>Canvas Size:</b><br>
 
       <input class="button" type="button" onclick="canvasRes()" value="Reset Canvas Size">
@@ -103,7 +118,7 @@
       <input type="button" onclick="insert(document.getElementById('xPos').value, document.getElementById('yPos').value, 9)" value="tumbler">
       <input type="button" onclick="insert(document.getElementById('xPos').value, document.getElementById('yPos').value, 10)" value="beacon"><br>
       Gliders:
-      <input type="button" onclick="insert(document.getElementById('xPos').value, document.getElementById('yPos').value, 12)" value="gosper glider gun">
+      <input type="button" onclick="insert(document.getElementById('xPos').value, document.getElementById('yPos').value, 12)" value="glider gun">
       <input type="button" onclick="insert(document.getElementById('xPos').value, document.getElementById('yPos').value, 13)" value="glider ↘">
       <input type="button" onclick="insert(document.getElementById('xPos').value, document.getElementById('yPos').value, 14)" value="glider ↗">
       <input type="button" onclick="insert(document.getElementById('xPos').value, document.getElementById('yPos').value, 15)" value="glider ↖">

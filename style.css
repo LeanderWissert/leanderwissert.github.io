@@ -11,6 +11,9 @@ body {
 ::placeholder {
   font-family: sans-serif;
 }
+audio {
+  display: none;
+}
 input[type="button"] {
   font-family: sans-serif;
   color:rgb(0, 0, 0);

@@ -29,18 +29,9 @@ document.addEventListener("DOMContentLoaded", (e) =>{  //waiting for html to loa
   }, 500); 
 })
 
-/*TODO: 
--place objects!!!!!!!!
--zoomen funktion - lupe??
--hintergrundmusik
-string dings parseint checken bei adnerne
-*/
-
-
 function preload() {
   Sans = loadFont('OpenSans-Regular.ttf');
 }
-
 function makeNewGrid(cols, rows){
   let arr = new Array(cols);
   for(let i=0; i<arr.length; i++){
@@ -234,62 +225,7 @@ function makeFinite(){
   document.getElementById("currentField").innerHTML = "Finite";
 }
 
-//-------------------INSERT PATTERNS
-
-function insert(x,y,index){
-  x = parseInt(x); //parsing string to integer 
-  y = parseInt(y);
-  if(index == 1){insertPattern = [[1,0,0],[1,1,1],[0,1,0]];} //rpent
-  if(index == 2){insertPattern = [[1,1,1,0],[0,1,0,0],[0,1,1,1]];} //herschel
-  if(index == 3){insertPattern = [[1,1,1],[1,0,0],[1,1,1]];} //piHept
-  if(index == 4){insertPattern = [[1,1,0,0,0,1,1],[0,0,1,1,1,0,0],[0,1,0,0,0,1,0],[0,0,1,0,1,0,0],[0,0,0,1,0,0,0]];} // queenbee
-  if(index == 5){insertPattern = [[0,1,0,0],[1,0,1,0],[1,0,0,1],[0,1,1,1]];} // wing
-  if(index == 6){insertPattern = [[0,0,1],[1,0,1],[0,0,0],[0,1,0],[0,0,1],[0,0,1],[0,0,1]];} //acorn
-  if(index == 7){insertPattern = [[0,1,1,1,1,0],[1,0,1,1,0,1],[1,1,0,0,1,1],[1,1,0,0,1,1],[1,0,1,1,0,1],[0,1,1,1,1,0]];} // octagon 2
-  if(index == 8){insertPattern = [[0,0,0,1,1,1],[0,0,0,1,1,1],[0,0,0,1,1,1],[1,1,1,0,0,0],[1,1,1,0,0,0],[1,1,1,0,0,0]];} // figure 8
-  if(index == 9){insertPattern = [[1,1,1,0,0,0],[1,0,0,0,1,1],[0,1,1,1,1,1],[0,0,0,0,0,0],[0,1,1,1,1,1],[1,0,0,0,1,1],[1,1,1,0,0,0]];} // tumbler
-  if(index == 10){insertPattern = [[1,1,0,0],[1,1,0,0],[0,0,1,1],[0,0,1,1]];} //beacon
-  if(index == 11){insertPattern = [[1,1,1]];} //blinker
-  if(index == 12){insertPattern = [[0,0,0,0,1,1,0,0,0],[0,0,0,0,1,1,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,1,1,1,0,0],[0,0,0,0,1,1,1,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,1,1,0,0,0,1,1],
-    [0,0,0,1,1,1,1,1,0],[0,0,0,0,1,1,1,0,0],[0,0,0,0,0,1,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[1,1,0,0,0,1,1,0,0],[0,0,1,1,1,0,0,0,0],
-    [0,1,0,0,0,1,0,0,0],[0,0,1,0,1,0,0,0,0],[0,0,0,1,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],
-    [0,0,1,1,0,0,0,0,0],[0,0,1,1,0,0,0,0,0]];} //gosper glider gun
-  if(index == 13){insertPattern = [[0,0,1],[1,0,1],[0,1,1]];} //gliders
-  if(index == 14){insertPattern = [[0,1,0],[1,0,0],[1,1,1]];}
-  if(index == 15){insertPattern = [[1,1,0],[1,0,1],[1,0,0]];}
-  if(index == 16){insertPattern = [[1,1,1],[0,0,1],[0,1,0]];}
-  if(index == 17){insertPattern = [[0,0,1,0,0,0,0,0,0,0],[1,1,0,1,0,0,0,0,0,0],[1,1,0,1,1,0,0,0,0,0],[0,1,0,1,1,0,0,0,0,0], 
-    [1,1,0,1,1,0,0,0,0,0],[0,1,0,1,0,0,0,1,1,0],[0,0,1,1,0,0,0,1,0,1],[0,0,1,1,0,1,0,0,0,1],[0,0,0,0,0,1,1,1,1,0],[0,0,0,0,0,1,1,0,0,0]];}//loafer
-  if(index == 18){insertPattern = [[1,1,1,0,0,0,0,0,0,0],[1,0,1,1,0,0,0,0,0,0],[1,1,1,1,0,1,0,0,0,0],[0,0,0,0,0,0,1,0,0,0],
-    [0,0,0,0,0,1,1,0,0,0],[0,0,0,0,0,0,1,1,1,1],[0,0,0,0,1,0,1,0,0,0],[0,0,0,1,0,0,1,0,0,0],[0,0,0,1,0,0,1,0,0,0],[0,0,0,0,1,0,1,0,0,0],
-    [0,0,0,0,0,0,1,1,1,1],[0,0,0,0,0,1,1,0,0,0],[0,0,0,0,0,0,1,0,0,0],[1,1,1,1,0,1,0,0,0,0],[1,0,1,1,0,0,0,0,0,0],[1,1,1,0,0,0,0,0,0,0]];}//weekender
-  if(index == 19){insertPattern = [[0,0,0,1,1,0,1,1,1,0,0,0,0],[0,1,1,0,0,1,1,0,0,0,0,1,0],[1,0,0,0,0,1,0,0,0,0,0,1,1],
-    [1,0,0,0,0,1,0,0,0,0,0,1,1],[0,1,1,0,0,1,1,0,0,0,0,1,0],[0,0,0,1,1,0,1,1,1,0,0,0,0]];} //copperhead
-  if(index == 20){insertPattern = [[1,1,1,0],[1,0,0,1],[1,0,0,0],[1,0,0,0],[0,1,0,1]];} //spaceships 
-  if(index == 21){insertPattern = [[1,0,1,0],[0,0,0,1],[0,0,0,1],[1,0,0,1],[0,1,1,1]];}
-  if(index == 22){insertPattern = [[0,1,0,0,1],[1,0,0,0,0],[1,0,0,0,1],[1,1,1,1,0]];}
-  if(index == 23){insertPattern = [[0,1,1,1,1],[1,0,0,0,1],[0,0,0,0,1],[1,0,0,1,0]];}
-  if(x % 1 != 0 || y % 1 != 0){
-    alertInt();
-  } else if(x < 0 || y < 0){
-    alertNeg();
-  } else if(x>canvasWidth/res || y>canvasHeight/res){
-    alertOutOfField();
-  } 
-  else {
-    for(let i=0; i<insertPattern.length; i++) {
-      for(let j=0; j<insertPattern[i].length; j++) {
-        grid[y+i][x+j] = insertPattern[i][j];
-      }
-    }
-  }
-}
-
-
-//---------------------------USER INTERACTIONS
+//----------------------USER INTERACTIONS
 
 function mousePressed() {
   mouse = true;
@@ -446,6 +382,62 @@ document.addEventListener("DOMContentLoaded", function() {
     setup();
   };
 });
+
+//-------------------INSERT PATTERNS
+
+function insert(x,y,index){
+  x = parseInt(x); //parsing string to integer 
+  y = parseInt(y);
+  if(index == 1){insertPattern = [[1,0,0],[1,1,1],[0,1,0]];} //rpent
+  if(index == 2){insertPattern = [[1,1,1,0],[0,1,0,0],[0,1,1,1]];} //herschel
+  if(index == 3){insertPattern = [[1,1,1],[1,0,0],[1,1,1]];} //piHept
+  if(index == 4){insertPattern = [[1,1,0,0,0,1,1],[0,0,1,1,1,0,0],[0,1,0,0,0,1,0],[0,0,1,0,1,0,0],[0,0,0,1,0,0,0]];} // queenbee
+  if(index == 5){insertPattern = [[0,1,0,0],[1,0,1,0],[1,0,0,1],[0,1,1,1]];} // wing
+  if(index == 6){insertPattern = [[0,0,1],[1,0,1],[0,0,0],[0,1,0],[0,0,1],[0,0,1],[0,0,1]];} //acorn
+  if(index == 7){insertPattern = [[0,1,1,1,1,0],[1,0,1,1,0,1],[1,1,0,0,1,1],[1,1,0,0,1,1],[1,0,1,1,0,1],[0,1,1,1,1,0]];} // octagon 2
+  if(index == 8){insertPattern = [[0,0,0,1,1,1],[0,0,0,1,1,1],[0,0,0,1,1,1],[1,1,1,0,0,0],[1,1,1,0,0,0],[1,1,1,0,0,0]];} // figure 8
+  if(index == 9){insertPattern = [[1,1,1,0,0,0],[1,0,0,0,1,1],[0,1,1,1,1,1],[0,0,0,0,0,0],[0,1,1,1,1,1],[1,0,0,0,1,1],[1,1,1,0,0,0]];} // tumbler
+  if(index == 10){insertPattern = [[1,1,0,0],[1,1,0,0],[0,0,1,1],[0,0,1,1]];} //beacon
+  if(index == 11){insertPattern = [[1,1,1]];} //blinker
+  if(index == 12){insertPattern = [[0,0,0,0,1,1,0,0,0],[0,0,0,0,1,1,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],
+    [0,0,0,0,1,1,1,0,0],[0,0,0,0,1,1,1,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,1,1,0,0,0,1,1],
+    [0,0,0,1,1,1,1,1,0],[0,0,0,0,1,1,1,0,0],[0,0,0,0,0,1,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[1,1,0,0,0,1,1,0,0],[0,0,1,1,1,0,0,0,0],
+    [0,1,0,0,0,1,0,0,0],[0,0,1,0,1,0,0,0,0],[0,0,0,1,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],
+    [0,0,1,1,0,0,0,0,0],[0,0,1,1,0,0,0,0,0]];} //gosper glider gun
+  if(index == 13){insertPattern = [[0,0,1],[1,0,1],[0,1,1]];} //gliders
+  if(index == 14){insertPattern = [[0,1,0],[1,0,0],[1,1,1]];}
+  if(index == 15){insertPattern = [[1,1,0],[1,0,1],[1,0,0]];}
+  if(index == 16){insertPattern = [[1,1,1],[0,0,1],[0,1,0]];}
+  if(index == 17){insertPattern = [[0,0,1,0,0,0,0,0,0,0],[1,1,0,1,0,0,0,0,0,0],[1,1,0,1,1,0,0,0,0,0],[0,1,0,1,1,0,0,0,0,0], 
+    [1,1,0,1,1,0,0,0,0,0],[0,1,0,1,0,0,0,1,1,0],[0,0,1,1,0,0,0,1,0,1],[0,0,1,1,0,1,0,0,0,1],[0,0,0,0,0,1,1,1,1,0],[0,0,0,0,0,1,1,0,0,0]];}//loafer
+  if(index == 18){insertPattern = [[1,1,1,0,0,0,0,0,0,0],[1,0,1,1,0,0,0,0,0,0],[1,1,1,1,0,1,0,0,0,0],[0,0,0,0,0,0,1,0,0,0],
+    [0,0,0,0,0,1,1,0,0,0],[0,0,0,0,0,0,1,1,1,1],[0,0,0,0,1,0,1,0,0,0],[0,0,0,1,0,0,1,0,0,0],[0,0,0,1,0,0,1,0,0,0],[0,0,0,0,1,0,1,0,0,0],
+    [0,0,0,0,0,0,1,1,1,1],[0,0,0,0,0,1,1,0,0,0],[0,0,0,0,0,0,1,0,0,0],[1,1,1,1,0,1,0,0,0,0],[1,0,1,1,0,0,0,0,0,0],[1,1,1,0,0,0,0,0,0,0]];}//weekender
+  if(index == 19){insertPattern = [[0,0,0,1,1,0,1,1,1,0,0,0,0],[0,1,1,0,0,1,1,0,0,0,0,1,0],[1,0,0,0,0,1,0,0,0,0,0,1,1],
+    [1,0,0,0,0,1,0,0,0,0,0,1,1],[0,1,1,0,0,1,1,0,0,0,0,1,0],[0,0,0,1,1,0,1,1,1,0,0,0,0]];} //copperhead
+  if(index == 20){insertPattern = [[1,1,1,0],[1,0,0,1],[1,0,0,0],[1,0,0,0],[0,1,0,1]];} //spaceships 
+  if(index == 21){insertPattern = [[1,0,1,0],[0,0,0,1],[0,0,0,1],[1,0,0,1],[0,1,1,1]];}
+  if(index == 22){insertPattern = [[0,1,0,0,1],[1,0,0,0,0],[1,0,0,0,1],[1,1,1,1,0]];}
+  if(index == 23){insertPattern = [[0,1,1,1,1],[1,0,0,0,1],[0,0,0,0,1],[1,0,0,1,0]];}
+  if(x % 1 != 0 || y % 1 != 0){
+    alertInt();
+  } else if(x < 0 || y < 0){
+    alertNeg();
+  } else if(x>canvasWidth/res || y>canvasHeight/res){
+    alertOutOfField();
+  } 
+  else {
+    for(let i=0; i<insertPattern.length; i++) {
+      for(let j=0; j<insertPattern[i].length; j++) {
+        grid[y+i][x+j] = insertPattern[i][j];
+      }
+    }
+  }
+}
+
+
 function alertInt(){
   let r = floor(random(8));
   if(r==0){
@@ -489,4 +481,30 @@ function alertNeg(){
 function alertOutOfField(){
   alert("Please enter a value for x and y that is inside the canvas.")
 }
-  
+
+//-------------------MUSIC
+/*
+const songs = ['song1', 'song2', 'song3', 'song4', 'song5', 'song6', 'song7', 'song8'];
+let currentSong = 0;
+
+function playSong() {
+  const song = document.getElementById(songs[currentSong]);
+  song.play();
+}
+function nextSong() {
+  const song = document.getElementById(songs[currentSong]);
+  song.pause();
+  currentSong = (currentSong + 1) % songs.length;
+  playSong();
+}
+function pauseSong() {
+  const song = document.getElementById(songs[currentSong]);
+  song.pause();
+}
+function previousSong() {
+  const song = document.getElementById(songs[currentSong]);
+  song.pause();
+  currentSong = (currentSong - 1 + songs.length) % songs.length;
+  playSong();
+}
+*/
