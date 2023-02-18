@@ -4,8 +4,8 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/1/1c/Game_of_life_fpento.svg">
+    
+    <link rel="icon" type="image/jpg" href="Quantum.jpg"/>
     <title>Conway's Game Of Life</title>
 
     <link rel="stylesheet" type="text/css" href="style.css">
@@ -15,9 +15,6 @@
   </head>
 
   <body>
-    
-
-
     <div class="splash">
       <h1 class="fade-in">conway's game of life</h1> 
     </div>
@@ -25,7 +22,8 @@
     <div class="header">
       <div><h1>Conway's Game Of Life</h1></div>
     <p><h2>by Leander Wissert</h2> </p>
-    <p>For reference:   <a href="https://conwaylife.com/wiki/">Game Of Life Wiki</a></p>
+    
+    <p>all the patterns come from the official <a href="https://conwaylife.com/wiki/">Game Of Life Wiki</a></p>
 
     <h3>Shortcuts:</h3>
     <p>
@@ -93,34 +91,58 @@
       <br><b>Patterns:</b><br>
       
       <input type="text" id="xPos" name="xPos" placeholder="x-position">
-      <input type="text" id="yPos" name="yPos" placeholder="y-position"><br>
+      <input type="text" id="yPos" name="yPos" placeholder="y-position">
+      <br>
       Methuselahs:
       <input type="button" onclick="insert(document.getElementById('xPos').value, document.getElementById('yPos').value, 1)" value="r-pentomino"> 
       <input type="button" onclick="insert(document.getElementById('xPos').value, document.getElementById('yPos').value, 2)" value="herschel"> 
       <input type="button" onclick="insert(document.getElementById('xPos').value, document.getElementById('yPos').value, 3)" value="pi-heptomino">
       <input type="button" onclick="insert(document.getElementById('xPos').value, document.getElementById('yPos').value, 4)" value="queen bee"> 
       <input type="button" onclick="insert(document.getElementById('xPos').value, document.getElementById('yPos').value, 5)" value="wing"> 
-      <input type="button" onclick="insert(document.getElementById('xPos').value, document.getElementById('yPos').value, 6)" value="acorn"><br> 
+      <input type="button" onclick="insert(document.getElementById('xPos').value, document.getElementById('yPos').value, 24)" value="century"> 
+      <input type="button" onclick="insert(document.getElementById('xPos').value, document.getElementById('yPos').value, 6)" value="acorn">
+      <input type="button" onclick="insert(document.getElementById('xPos').value, document.getElementById('yPos').value, 28)" value="switch engine">
+      <input type="button" onclick="insert(document.getElementById('xPos').value, document.getElementById('yPos').value, 26)" value="thunderbird">
+      <br>
       Oscillators:
       <input type="button" onclick="insert(document.getElementById('xPos').value, document.getElementById('yPos').value, 11)" value="blinker"> 
       <input type="button" onclick="insert(document.getElementById('xPos').value, document.getElementById('yPos').value, 7)" value="octagon 2"> 
       <input type="button" onclick="insert(document.getElementById('xPos').value, document.getElementById('yPos').value, 8)" value="figure eight"> 
       <input type="button" onclick="insert(document.getElementById('xPos').value, document.getElementById('yPos').value, 9)" value="tumbler">
-      <input type="button" onclick="insert(document.getElementById('xPos').value, document.getElementById('yPos').value, 10)" value="beacon"><br>
+      <input type="button" onclick="insert(document.getElementById('xPos').value, document.getElementById('yPos').value, 10)" value="beacon">
+      <br>
       Gliders:
       <input type="button" onclick="insert(document.getElementById('xPos').value, document.getElementById('yPos').value, 12)" value="glider gun">
       <input type="button" onclick="insert(document.getElementById('xPos').value, document.getElementById('yPos').value, 13)" value="glider ↘">
       <input type="button" onclick="insert(document.getElementById('xPos').value, document.getElementById('yPos').value, 14)" value="glider ↗">
       <input type="button" onclick="insert(document.getElementById('xPos').value, document.getElementById('yPos').value, 15)" value="glider ↖">
-      <input type="button" onclick="insert(document.getElementById('xPos').value, document.getElementById('yPos').value, 16)" value="glider ↙"><br>
+      <input type="button" onclick="insert(document.getElementById('xPos').value, document.getElementById('yPos').value, 16)" value="glider ↙">
+      <br>
+      Glider Generators:
+      <input type="button" onclick="insert(document.getElementById('xPos').value, document.getElementById('yPos').value, 36)" value="diamond (1-4)">
+      <input type="button" onclick="insert(document.getElementById('xPos').value, document.getElementById('yPos').value, 38)" value="bi-loaf (1-2)">
+      <input type="button" onclick="insert(document.getElementById('xPos').value, document.getElementById('yPos').value, 39)" value="bi-clock (1-2)">
+      <input type="button" onclick="insert(document.getElementById('xPos').value, document.getElementById('yPos').value, 37)" value="undecomino (1-1)">
+      <br>
       Spaceships:
       <input type="button" onclick="insert(document.getElementById('xPos').value, document.getElementById('yPos').value, 17)" value="loafer">
       <input type="button" onclick="insert(document.getElementById('xPos').value, document.getElementById('yPos').value, 18)" value="weekender">
       <input type="button" onclick="insert(document.getElementById('xPos').value, document.getElementById('yPos').value, 19)" value="copperhead">
+      <input type="button" onclick="insert(document.getElementById('xPos').value, document.getElementById('yPos').value, 27)" value="schick engine">
+      <input type="button" onclick="insert(document.getElementById('xPos').value, document.getElementById('yPos').value, 29)" value="coe ship">
+      <input type="button" onclick="insert(document.getElementById('xPos').value, document.getElementById('yPos').value, 30)" value="blinker ship 1">
       <input type="button" onclick="insert(document.getElementById('xPos').value, document.getElementById('yPos').value, 20)" value="spaceship &#8592;"> 
       <input type="button" onclick="insert(document.getElementById('xPos').value, document.getElementById('yPos').value, 21)" value="spaceship &#x2192;">
       <input type="button" onclick="insert(document.getElementById('xPos').value, document.getElementById('yPos').value, 22)" value="spaceship &#x2191;">
-      <input type="button" onclick="insert(document.getElementById('xPos').value, document.getElementById('yPos').value, 23)" value="spaceship &#x2193;"><br>
+      <input type="button" onclick="insert(document.getElementById('xPos').value, document.getElementById('yPos').value, 23)" value="spaceship &#x2193;">
+      <br>      
+      Still Life:
+      <input type="button" onclick="insert(document.getElementById('xPos').value, document.getElementById('yPos').value, 25)" value="beehive">
+      <input type="button" onclick="insert(document.getElementById('xPos').value, document.getElementById('yPos').value, 31)" value="block">
+      <input type="button" onclick="insert(document.getElementById('xPos').value, document.getElementById('yPos').value, 32)" value="eater ↖">
+      <input type="button" onclick="insert(document.getElementById('xPos').value, document.getElementById('yPos').value, 33)" value="eater ↘">
+      <input type="button" onclick="insert(document.getElementById('xPos').value, document.getElementById('yPos').value, 34)" value="eater ↙">
+      <input type="button" onclick="insert(document.getElementById('xPos').value, document.getElementById('yPos').value, 35)" value="eater ↗">
       <br>
 
 
