@@ -53,6 +53,9 @@ function nextAudio() {
   audio.load();
   audio.play();
 }
+audio.addEventListener("ended", function() {
+  nextAudio();
+});
 
 function preload() {
   Sans = loadFont('OpenSans-Regular.ttf');
