@@ -29,6 +29,32 @@ document.addEventListener("DOMContentLoaded", (e) =>{  //waiting for html to loa
   }, 1500); 
 })
 
+var audio = document.getElementById("audio");
+var sources = audio.getElementsByTagName('source');
+var currentSource = 0;
+
+function playAudio() {
+  audio.play();
+}
+
+function pauseAudio() {
+  audio.pause();
+}
+
+function prevAudio() {
+  currentSource = (currentSource - 1 + sources.length) % sources.length;
+  audio.src = sources[currentSource].src;
+  audio.load();
+  audio.play();
+}
+
+function nextAudio() {
+  currentSource = (currentSource + 1) % sources.length;
+  audio.src = sources[currentSource].src;
+  audio.load();
+  audio.play();
+}
+
 function preload() {
   Sans = loadFont('OpenSans-Regular.ttf');
 }
@@ -150,7 +176,7 @@ function draw() {
   if(key==="o"){
     roundCorners = 0;
   }
-  if(key === "p"){
+  if(key==="p"){
    roundCorners = 1;
   }
 }
