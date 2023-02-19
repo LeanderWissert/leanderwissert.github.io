@@ -374,11 +374,12 @@ function setCanvasTo1500(){
 function setCanvasTo(xC, yC) {
   let ganzeZahl = true;
   let positive = true;
-  if(xC<0 || yC<0){
+  if(xC == "" || yC == ""){
+    alertEmpty();
+  } else if(xC<0 || yC<0){
     positive = false;
     alertNeg();
-  }
-  if(xC % 1 != 0 || yC % 1 != 0) {
+  } else if(xC % 1 != 0 || yC % 1 != 0) {
     alertInt();  
     ganzeZahl = false;
   } else if(ganzeZahl == true && positive == true) {
@@ -390,7 +391,9 @@ function setCanvasTo(xC, yC) {
 }
 function setResTo(a) {
   let ganzeZahl = true;
-  if(a % 1 != 0) {
+  if(a == ""){
+    alertEmpty();
+  } else if(a % 1 != 0) {
     alertInt();  
     ganzeZahl = false;
   } else if(ganzeZahl == true) {
@@ -413,6 +416,8 @@ document.addEventListener("DOMContentLoaded", function() {
 function insert(x,y,index){
   x = parseInt(x); //parsing string to integer 
   y = parseInt(y);
+
+
   if(index == 1){insertPattern = [[1,0,0],[1,1,1],[0,1,0]];} //rpent
   if(index == 2){insertPattern = [[1,1,1,0],[0,1,0,0],[0,1,1,1]];} //herschel
   if(index == 3){insertPattern = [[1,1,1],[1,0,0],[1,1,1]];} //piHept
@@ -471,8 +476,11 @@ function insert(x,y,index){
     [1,0,1,0,1,0,1,0,1],[1,0,1,0,1,0,1,0,1],[1,0,1,0,1,0,1,0,1],[0,0,1,0,1,0,1,0,0],[0,0,1,0,1,0,1,0,0],[0,0,0,0,1,0,0,0,0],[0,0,0,0,1,0,0,0,0]]}//diamond 
   if(index == 37){insertPattern = [[1,1],[1,1],[1,1],[1,1],[1,1],[1,0]]}//undecomino 
   if(index == 38){insertPattern = [[0,0,1,0,1,1,0],[0,1,0,1,0,0,1],[1,0,0,1,0,1,0],[0,1,1,0,1,0,0]]}//bi-loaf 
-  if(index == 39){insertPattern = [[0,1,0,0,0,0,0],[0,1,0,1,0,0,0],[1,0,1,0,0,0,0],[0,0,1,0,1,0,0],[0,0,0,0,1,0,1],[0,0,0,1,0,1,0],[0,0,0,0,0,1,0]]}//bi-clock 
-  if(x % 1 != 0 || y % 1 != 0){
+  if(index == 0){insertPattern = [[0,1,0,0,0,0,0],[0,1,0,1,0,0,0],[1,0,1,0,0,0,0],[0,0,1,0,1,0,0],[0,0,0,0,1,0,1],[0,0,0,1,0,1,0],[0,0,0,0,0,1,0]]}//bi-clock 
+ 
+  if(document.getElementById('xPos').value == "" || document.getElementById('yPos').value == ""){
+    alertEmpty();
+  } else if(x % 1 != 0 || y % 1 != 0){
     alertInt();
   } else if(x < 0 || y < 0){
     alertNeg();
@@ -487,7 +495,24 @@ function insert(x,y,index){
     }
   }
 }
+function randomPattern(){
+  let r = floor(random(39));
+  let x = document.getElementById('xPos').value;
+  let y = document.getElementById('yPos').value;
+  if(document.getElementById('xPos').value == "" || document.getElementById('yPos').value == ""){
+    alertEmpty();
+  } else if(x % 1 != 0 || y % 1 != 0){
+    alertInt();
+  } else if(x>canvasWidth/res || y>canvasHeight/res){
+    alertOutOfField();
+  } else if(x<0||y<0){
+    alertNeg();
+  } else{
+    insert(document.getElementById('xPos').value, document.getElementById('yPos').value, r);
+  }
+}
 
+//ALERTS
 
 function alertInt(){
   let r = floor(random(8));
@@ -497,15 +522,15 @@ function alertInt(){
     alert("EMOTIONAL DAMAGE. enter an integer");
   } else if(r==7){
     alert("YOU ARE SUCH A FAILURE. enter an integer");
-  }else if(r==2){
+  } else if(r==2){
     alert("Life's resolution is not about the pixels, but the moments that make them. Please enter an integer value for the screen resolution and enjoy life's vivid details.")
-  }else if(r==3){
+  } else if(r==3){
     alert("Error 101: Life's resolution not found. Please set your screen resolution to an integer value and watch your life come into focus.")
-  }else if(r==4){
+  } else if(r==4){
     alert("Life is a journey full of twists and turns, but the screen resolution is not one of them. Please enter an integer value and let the game of life run smoothly.")
-  }else if(r==5){
+  } else if(r==5){
     alert("Non-integer resolution? That's a bit of a screen glitch. Please set your resolution to an integer value and enjoy life's vibrant display.")
-  }else if(r==6){
+  } else if(r==6){
     alert("Sorry, friend. Non-integer resolutions are not compatible with life's software. Please enter an integer value and see your life in high-definition clarity.")
   }
 }
@@ -515,20 +540,57 @@ function alertNeg(){
     alert("Negativity has no place in the canvas of life. Please enter a positive value for canvas size.");
   } else if(r==1){
     alert("have you ever tried to drink -1 Paulaner Spazi? Me neither. Enter a positive value for the canvas size.")
-  }else if(r==7){
+  } else if(r==7){
     alert("EMOTIONAL DAMAGE. enter a positive value.");
-  }else if(r==2){
+  } else if(r==2){
     alert("Whoa there, friend! Negative canvas size? That's a real stroke of bad luck. Please enter a positive value and paint your life's masterpiece in a brighter hue.")
-  }else if(r==3){
+  } else if(r==3){
     alert("Error 404: Positive vibes not found. Please set your canvas size to a positive value and let the colors of life shine through.")
-  }else if(r==4){
+  } else if(r==4){
     alert("Life is a canvas that should be painted with bold strokes, not negative numbers. Please enter a positive value for the canvas size and let the game of life unfold in its own unique way.")
-  }else if(r==5){
+  } else if(r==5){
     alert("Negative canvas size? That's a real downer. Remember, life is a work of art and you're the artist. So keep your canvas positive and paint a picture of a happy, fulfilling life.")
-  }else if(r==6){
+  } else if(r==6){
     alert("Sorry, friend. Negative canvas size is not an option. Please choose a positive value and embrace the beauty of life's canvas.")
   }
 }
 function alertOutOfField(){
-  alert("Please enter a value for x and y that is inside the canvas.")
+  let r = floor(random(8));
+  if(r==0){
+    alert("Life is infinite, but your input must fit within the boundaries of the field. Please enter a value that is within the range of the pattern's size.");
+  } else if(r==1){
+    alert("Error: Your input is out of bounds. Life's patterns can't extend beyond the field, so please enter a value that fits within the pattern's size.")
+  } else if(r==7){
+    alert("EMOTIONAL DAMAGE. enter values that are inside the field.");
+  } else if(r==2){
+    alert("Life is full of surprises, but your input shouldn't be one of them. Please enter a value that is within the bounds of the pattern's size and let the game of life unfold naturally.")
+  } else if(r==3){
+    alert("Error: Your input is causing a disturbance in the game of life. Please enter a value that is within the range of the pattern's size and maintain the harmony of the field.")
+  } else if(r==4){
+    alert("Error: Your input is triggering an existential crisis in the game of life. Please enter a value that is within the range of the pattern's size and help the game of life find meaning.")
+  } else if(r==5){
+    alert("Error: Your input is like a glitch in the matrix. Please enter a value that is within the range of the pattern's size and restore order to the game of life.")
+  } else if(r==6){
+    alert("Error: Your input is like a rogue wave, causing chaos in the game of life. Please enter a value that is within the range of the pattern's size and tame the turbulent waters of the field.")
+  }
+}
+function alertEmpty(){
+  let r = floor(random(8));
+  if(r==0){
+    alert("Error: You forgot to enter a value. Please enter a valid value to change the course of the game of life.");
+  } else if(r==1){
+    alert("Life is a blank canvas, but you forgot to paint it. Please enter a value to bring your vision to life.")
+  } else if(r==7){
+    alert("EMOTIONAL DAMAGE. enter a value");
+  } else if(r==2){
+    alert("Life is like a road trip, but you forgot to pack your bags. Please enter a value to ensure you have everything you need for the journey.")
+  } else if(r==3){
+    alert("Error: Your input is as empty as a vacuum. Please enter a value to fill the void in the game of life.")
+  } else if(r==4){
+    alert("Life is full of choices, but you forgot to make one. Please enter a value to shape the game of life.")
+  } else if(r==5){
+    alert("Error: Your input is as absent as a ghost. Please enter a value to bring life to the game.")
+  } else if(r==6){
+    alert("Error: Your input is as elusive as a unicorn. Please enter a value to make the game of life more real.")
+  }
 }
