@@ -216,7 +216,7 @@ function colorMode2(){
   h1=0;s1=0;b1=100;h2=0;s2=0;b2=0;
   print("COLORMODE CHANGED TO WB");} // WB
 function colorMode3(){
-  h1=276;s1=100;b1=50;h2=180;s2=100;b2=100;
+  h1=0;s1=0;b1=0;h2=180;s2=100;b2=100;
   print("COLORMODE CHANGED TO QI");} // QI
 
 function countGens() {
