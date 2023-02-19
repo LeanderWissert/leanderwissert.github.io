@@ -23,15 +23,14 @@
       <div><h1>Conway's Game Of Life</h1></div>
     <p><h2>by Leander Wissert</h2> </p>
     <p>developed by quantum industries</p>
-    
     <p>all the patterns come from the official <a href="https://conwaylife.com/wiki/">Game Of Life Wiki</a></p>
 
 
     music by @arl.quantum4.0:
-    <input class="button" type="button" onclick="playAudio()" value="Play">
-    <input class="button" type="button" onclick="pauseAudio()" value="Pause">
-    <input class="button" type="button" onclick="prevAudio()" value="Previous">
-    <input class="button" type="button" onclick="nextAudio()" value="Next">
+    <input type="button" onclick="playAudio()" value="Play">
+    <input type="button" onclick="pauseAudio()" value="Pause">
+    <input type="button" onclick="prevAudio()" value="Previous">
+    <input type="button" onclick="nextAudio()" value="Next">
       
     <audio id="audio" controls>
       <source src="da_dap_da_da_3.mp3" type="audio/mpeg">
@@ -76,33 +75,33 @@
     <div class="buttonContainer">
       <b>Style:</b><br>
 
-      <input class="button" type="button" onclick="colorMode1()" value="White Cells (Default)">
-      <input class="button" type="button" onclick="colorMode2()" value="Black Cells">
-      <input class="button" type="button" onclick="colorMode3()" value="Disorder">
-      <input class="button" type="button" onclick="corners()" value="▢">
-      <input class="button" type="button" onclick="circles()" value="O">
+      <input type="button" onclick="colorMode1()" value="White Cells (Default)">
+      <input type="button" onclick="colorMode2()" value="Black Cells">
+      <input type="button" onclick="colorMode3()" value="Disorder">
+      <input type="button" onclick="corners()" value="▢">
+      <input type="button" onclick="circles()" value="O">
 
       <br><br>
       <b>Resolution:</b><br>
 
-      <input class="button" type="button" onclick="resRes()" value="Reset Resolution">
-      <input class="button" type="button" onclick="resUp()" value="Resolution++">
-      <input class="button" type="button" onclick="resDown()" value="Resoulution--">
-      <input class="button" type="button" onclick="setResTo5()" value="Res = 5">
-      <input class="button" type="button" onclick="setResTo10()" value="Res = 10">
-      <input class="button" type="button" onclick="setResTo15()" value="Res = 15"><br>
+      <input type="button" onclick="resRes()" value="Reset Resolution">
+      <input type="button" onclick="resUp()" value="Resolution++">
+      <input type="button" onclick="resDown()" value="Resoulution--">
+      <input type="button" onclick="setResTo5()" value="Res = 5">
+      <input type="button" onclick="setResTo10()" value="Res = 10">
+      <input type="button" onclick="setResTo15()" value="Res = 15"><br>
       <input type="range" id="resolution-slider" min="1" max="100" value="15"><br>
       <input type="text" id="Resolution" name="Resolution" placeholder="Resolution"> 
       <input type="button" onclick="setResTo(document.getElementById('Resolution').value)" value="Display New Canvas"> <br>
       <br>
       <b>Canvas Size:</b><br>
 
-      <input class="button" type="button" onclick="canvasRes()" value="Reset Canvas Size">
-      <input class="button" type="button" onclick="canvasUp()" value="Canvas += 100">
-      <input class="button" type="button" onclick="canvasDown()" value="Canvas -= 100">
-      <input class="button" type="button" onclick="setCanvasTo400()" value="400 x 400">
-      <input class="button" type="button" onclick="setCanvasTo1000()" value="1000 x 1000">
-      <input class="button" type="button" onclick="setCanvasTo1500()" value="1500 x 1500"><br>
+      <input type="button" onclick="canvasRes()" value="Reset Canvas Size">
+      <input type="button" onclick="canvasUp()" value="Canvas += 100">
+      <input type="button" onclick="canvasDown()" value="Canvas -= 100">
+      <input type="button" onclick="setCanvasTo400()" value="400 x 400">
+      <input type="button" onclick="setCanvasTo1000()" value="1000 x 1000">
+      <input type="button" onclick="setCanvasTo1500()" value="1500 x 1500"><br>
       <input type="text" id="canvasWidth" name="canvasWidth" placeholder="Canvas Width">
       <input type="text" id="canvasHeight" name="canvasHeight" placeholder="Canvas Height">
       <input type="button" onclick="setCanvasTo(document.getElementById('canvasWidth').value, document.getElementById('canvasWidth').value)" value="Display New Canvas"><br> <!-- this is so cool -->
@@ -111,6 +110,7 @@
       
       <input type="text" id="xPos" name="xPos" placeholder="x-position">
       <input type="text" id="yPos" name="yPos" placeholder="y-position">
+      <input type="button" onclick="randomPattern()" value="random pattern"> 
       <br>
       Methuselahs:
       <input type="button" onclick="insert(document.getElementById('xPos').value, document.getElementById('yPos').value, 1)" value="r-pentomino"> 
@@ -167,13 +167,13 @@
 
       <br><b>General Commands:</b><br>
 
-      <input class="button" type="button" onclick="startSim()" value="Start">
-      <input class="button" type="button" onclick="stopSim()" value="Stop">
-      <input class="button" type="button" onclick="nextGen()" value="+1 Generation">
-      <input class="button" type="button" onclick="clearCanvas()" value="Clear">
-      <input class="button" type="button" onclick="randomCanvas()" value="Random">
-      <input class="button" type="button" onclick="makeTorodial()" value="Torodial Field">
-      <input class="button" type="button" onclick="makeFinite()" value="Finite Field"><br>
+      <input type="button" onclick="startSim()" value="Start">
+      <input type="button" onclick="stopSim()" value="Stop">
+      <input type="button" onclick="nextGen()" value="+1 Generation">
+      <input type="button" onclick="clearCanvas()" value="Clear">
+      <input type="button" onclick="randomCanvas()" value="Random">
+      <input type="button" onclick="makeTorodial()" value="Torodial Field">
+      <input type="button" onclick="makeFinite()" value="Finite Field"><br>
 
       <table>
         <td>Generation</td><td><p id="generation-count"></p></td><td>
