@@ -56,6 +56,13 @@ function nextAudio() {
 audio.addEventListener("ended", function() {
   nextAudio();
 });
+document.addEventListener("DOMContentLoaded", function() { //in this case event listener is unnessecery but still it prevents possible errors or lags (when code is executed before html is fully loaded)
+  let volSlider = document.getElementById("volume-slider");
+  volSlider.oninput = function() {
+    audio.volume = (volSlider.value/100);
+    print(`VOLUME SET TO ${(volSlider.value/100)}`);
+  };
+});
 
 function preload() {
   Sans = loadFont('OpenSans-Regular.ttf');
@@ -410,6 +417,7 @@ document.addEventListener("DOMContentLoaded", function() {
     setup();
   };
 });
+
 
 //-------------------INSERT PATTERNS
 
