@@ -484,7 +484,9 @@ function insert(x,y,index){
     [1,0,1,0,1,0,1,0,1],[1,0,1,0,1,0,1,0,1],[1,0,1,0,1,0,1,0,1],[0,0,1,0,1,0,1,0,0],[0,0,1,0,1,0,1,0,0],[0,0,0,0,1,0,0,0,0],[0,0,0,0,1,0,0,0,0]]}//diamond 
   if(index == 37){insertPattern = [[1,1],[1,1],[1,1],[1,1],[1,1],[1,0]]}//undecomino 
   if(index == 38){insertPattern = [[0,0,1,0,1,1,0],[0,1,0,1,0,0,1],[1,0,0,1,0,1,0],[0,1,1,0,1,0,0]]}//bi-loaf 
-  if(index == 0){insertPattern = [[0,1,0,0,0,0,0],[0,1,0,1,0,0,0],[1,0,1,0,0,0,0],[0,0,1,0,1,0,0],[0,0,0,0,1,0,1],[0,0,0,1,0,1,0],[0,0,0,0,0,1,0]]}//bi-clock 
+  if(index == 0){insertPattern = [[0,1,0,0,0,0,0],[0,1,0,1,0,0,0],[1,0,1,0,0,0,0],[0,0,1,0,1,0,0],[0,0,0,0,1,0,1],[0,0,0,1,0,1,0],[0,0,0,0,0,1,0]]}//bi-clock
+  if(index == 39){insertPattern = [[1,1,0,1,1,1,1,1,1],[1,1,0,1,1,1,1,1,1],[1,1,0,0,0,0,0,0,0],[1,1,0,0,0,0,0,1,1],[1,1,0,0,0,0,0,1,1],[1,1,0,0,0,0,0,1,1],
+    [0,0,0,0,0,0,0,1,1],[1,1,1,1,1,1,0,1,1],[1,1,1,1,1,1,0,1,1]]} //kok's galaxy
  
   if(document.getElementById('xPos').value == "" || document.getElementById('yPos').value == ""){
     alertEmpty();
@@ -504,7 +506,7 @@ function insert(x,y,index){
   }
 }
 function randomPattern(){
-  let r = floor(random(39));
+  let r = floor(random(40));
   let x = document.getElementById('xPos').value;
   let y = document.getElementById('yPos').value;
   if(document.getElementById('xPos').value == "" || document.getElementById('yPos').value == ""){
