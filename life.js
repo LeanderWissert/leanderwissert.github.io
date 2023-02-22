@@ -56,7 +56,7 @@ function nextAudio() {
 audio.addEventListener("ended", function() {
   nextAudio();
 });
-document.addEventListener("DOMContentLoaded", function() { //in this case event listener is unnessecery but still it prevents possible errors or lags (when code is executed before html is fully loaded)
+document.addEventListener("DOMContentLoaded", function() { 
   let volSlider = document.getElementById("volume-slider");
   volSlider.oninput = function() {
     audio.volume = (volSlider.value/100);
@@ -398,12 +398,16 @@ function setCanvasTo(xC, yC) {
 }
 function setResTo(a) {
   let ganzeZahl = true;
+  let positive = true;
   if(a == ""){
     alertEmpty();
+  } else if(a<0){
+    positive = false;
+    alertNeg();
   } else if(a % 1 != 0) {
     alertInt();  
     ganzeZahl = false;
-  } else if(ganzeZahl == true) {
+  } else if(ganzeZahl == true && positive == false) {
       res = a;
       print("RESOLUTION SET TO "+ a);
       setup();
