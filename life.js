@@ -504,7 +504,7 @@ function insert(x,y,index){
   else {
     for(let i=0; i<insertPattern.length; i++) {
       for(let j=0; j<insertPattern[i].length; j++) {
-        grid[y+i][x+j] = insertPattern[i][j];
+        grid[x+i][y+j] = insertPattern[i][j];
       }
     }
   }
