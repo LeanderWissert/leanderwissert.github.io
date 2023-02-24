@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", function() {
   let volSlider = document.getElementById("volume-slider");
   volSlider.oninput = function() {
     audio.volume = (volSlider.value/100);
-    print(`VOLUME SET TO ${(volSlider.value/100)}`);
+    print(`VOLUME SET TO ${(volSlider.value/100)}`); //f string -> print(f"volume set to {variable} blabla")
   };
 });
 
@@ -407,7 +407,7 @@ function setResTo(a) {
   } else if(a % 1 != 0) {
     alertInt();  
     ganzeZahl = false;
-  } else if(ganzeZahl == true && positive == false) {
+  } else if(ganzeZahl == true && positive == true) {
       res = a;
       print("RESOLUTION SET TO "+ a);
       setup();
@@ -417,7 +417,7 @@ document.addEventListener("DOMContentLoaded", function() {
   let resSlider = document.getElementById("resolution-slider");
   resSlider.oninput = function() {
     res = resSlider.value;
-    print(`RESOLUTION SET TO ${resSlider.value}`);
+    print(`RESOLUTION SET TO ${resSlider.value}`); //f string
     setup();
   };
 });
@@ -492,7 +492,7 @@ function insert(x,y,index){
   if(index == 39){insertPattern = [[1,1,0,1,1,1,1,1,1],[1,1,0,1,1,1,1,1,1],[1,1,0,0,0,0,0,0,0],[1,1,0,0,0,0,0,1,1],[1,1,0,0,0,0,0,1,1],[1,1,0,0,0,0,0,1,1],
     [0,0,0,0,0,0,0,1,1],[1,1,1,1,1,1,0,1,1],[1,1,1,1,1,1,0,1,1]]} //kok's galaxy
  
-  if(document.getElementById('xPos').value == "" || document.getElementById('yPos').value == ""){
+  if(x == "" || y == ""){
     alertEmpty();
   } else if(x % 1 != 0 || y % 1 != 0){
     alertInt();

@@ -93,8 +93,8 @@
       <input type="button" onclick="setResTo10()" value="Res = 10">
       <input type="button" onclick="setResTo15()" value="Res = 15"><br>
       <input type="range" id="resolution-slider" min="1" max="100" value="15"><br>
-      <input type="text" id="Resolution" name="Resolution" placeholder="Resolution"> 
-      <input type="button" onclick="setResTo(document.getElementById('Resolution').value)" value="Display New Canvas"> <br>
+      <input type="text" id="resolution" name="Resolution" placeholder="Resolution"> 
+      <input type="button" onclick="setResTo(document.getElementById('resolution').value)" value="Display New Canvas"> <br>
       <br>
       <b>Canvas Size:</b><br>
 
@@ -106,7 +106,7 @@
       <input type="button" onclick="setCanvasTo1500()" value="1500 x 1500"><br>
       <input type="text" id="canvasWidth" name="canvasWidth" placeholder="Canvas Width">
       <input type="text" id="canvasHeight" name="canvasHeight" placeholder="Canvas Height">
-      <input type="button" onclick="setCanvasTo(document.getElementById('canvasWidth').value, document.getElementById('canvasWidth').value)" value="Display New Canvas"><br> <!-- this is so cool -->
+      <input type="button" onclick="setCanvasTo(document.getElementById('canvasWidth').value, document.getElementById('canvasHeight').value)" value="Display New Canvas"><br> <!-- this is so cool -->
 
       <br><b>Patterns:</b><br>
       
