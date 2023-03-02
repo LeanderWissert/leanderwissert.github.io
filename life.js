@@ -22,10 +22,12 @@ let aliveCells = 0;
 let deadCells = 0;
 let torodial = true;
 
-const splash = document.querySelector(".splash"); //splash = html element with splash class 
-document.addEventListener("DOMContentLoaded", (e) =>{  //waiting for html to load, e passes obj onto func
+//SPLASHSCREEN
+
+const splash = document.querySelector(".splash"); 
+document.addEventListener("DOMContentLoaded", (e) =>{ 
   setTimeout(() => { 
-    splash.classList.add('display-none'); //hiding element bhind page
+    splash.classList.add('display-none');
   }, 1500); 
 })
 
@@ -60,13 +62,16 @@ document.addEventListener("DOMContentLoaded", function() {
   let volSlider = document.getElementById("volume-slider");
   volSlider.oninput = function() {
     audio.volume = (volSlider.value/100);
-    print(`VOLUME SET TO ${(volSlider.value/100)}`); //f string -> print(f"volume set to {variable} blabla")
+    print(`VOLUME SET TO ${(volSlider.value/100)}`); 
   };
 });
 
 function preload() {
   Sans = loadFont('OpenSans-Regular.ttf');
 }
+
+//MAKE 2D ARRAY
+
 function makeNewGrid(cols, rows){
   let arr = new Array(cols);
   for(let i=0; i<arr.length; i++){
@@ -80,10 +85,14 @@ function setup() {
   createCanvas(canvasWidth, canvasHeight);
   generation = 0;
   countGens();
-
-  document.getElementById("currentField").innerHTML = "Torodial";
+  
+  if(torodial == false){
+    document.getElementById("currentField").innerHTML = "Finite";
+  } else {
+    document.getElementById("currentField").innerHTML = "Torodial";
+  }
   document.getElementById("currentRes").innerHTML = res;
-  document.getElementById("currentSize").innerHTML = canvasWidth + " × " + canvasHeight;
+  document.getElementById("currentSize").innerHTML = `${canvasWidth} x ${canvasHeight}`;
 
   cols = floor(width/res);
   rows = floor(height/res);
@@ -102,6 +111,8 @@ function setup() {
   countCells(grid);
 }
 
+//MAIN LOOP
+
 function draw() {
   if(key==="b"){
     colorMode1();}
@@ -110,7 +121,7 @@ function draw() {
   else if(key==="m"){
     colorMode3();}
   background(h1,s1,b1);
-  //draw
+  
   for(let i=0; i<cols; i++){
     for(let j=0; j<rows; j++){
       let x = i*res;
@@ -120,9 +131,9 @@ function draw() {
         stroke(0);
         rect(x, y, res-1, res-1, roundCorners*(res/2));
       }
-      if ((i*res<mouseX) && (mouseX<(i + 1)*res) && (j*res<mouseY) && (mouseY<(j + 1)*res)) { //mouse on canvas/array?
+      if ((i*res<mouseX) && (mouseX<(i + 1)*res) && (j*res<mouseY) && (mouseY<(j + 1)*res)) { 
         if (mouse == true) { 
-            grid[i][j] = (grid[i][j] + 1) % 2; //when 0 --> 1, when 1 --> 0
+            grid[i][j] = (grid[i][j] + 1) % 2; 
             mouse = false;
         }
       }
@@ -132,7 +143,6 @@ function draw() {
     let next = makeNewGrid (cols, rows);
 
     if(torodial == true){
-      //Calculate next based on old grid
       for(let i=0; i<cols; i++){
        for(let j=0; j<rows; j++){
          let state = grid[i][j];
@@ -195,13 +205,13 @@ function countNeighborsTorodial(grid, x, y) {
   for(let i=-1; i<2; i++) {
     for (let j=-1; j<2; j++) {
 
-      let col = (x + i + cols) % cols; //due to wrapparound shifting rows and cols to the other side
-      let row = (y + j + rows) % rows; //p.e.: (9+1+10 % 10 = 0) -> 9th element in row was shifted to 1st in nexte gen
+      let col = (x + i + cols) % cols; 
+      let row = (y + j + rows) % rows; 
 
-      sum += grid[col][row];
+      sum += grid[col][row]; 
     }
   }
-  sum -= grid[x][y]; //only neighbors -> substract yourself from sum
+  sum -= grid[x][y]; 
   return sum;
 }
 
@@ -212,19 +222,9 @@ function countNeighborsFinite(grid, x, y){
       sum += grid[x+i][y+j];
     }
   }
-  sum -= grid[x][y]; //only neighbors -> substract yourself from sum
+  sum -= grid[x][y]; 
   return sum;
 }
-
-function colorMode1(){
-  h1=0;s1=0;b1=0;h2=0;s2=0;b2=100;
-  print("COLORMODE CHANGED TO BW");} // BW
-function colorMode2(){
-  h1=0;s1=0;b1=100;h2=0;s2=0;b2=0;
-  print("COLORMODE CHANGED TO WB");} // WB
-function colorMode3(){
-  h1=0;s1=0;b1=0;h2=180;s2=100;b2=100;
-  print("COLORMODE CHANGED TO QI");} // QI
 
 function countGens() {
   let genCountDiv = document.getElementById("generation-count");
@@ -243,10 +243,13 @@ function countCells(grid){
       }
     }
   }
-  //print("DEAD:" + deadCells + " ALIVE:" + aliveCells);
+  //print(`DEAD:${deadCells} ALIVE:${aliveCells}`);
   document.getElementById("currentDead").innerHTML = deadCells;
   document.getElementById("currentAlive").innerHTML = aliveCells;
 }
+
+//CHANGE PROPERTIES OF CANVAS
+
 function makeTorodial(){
   torodial = true;
   //setup(); 
@@ -260,7 +263,7 @@ function makeFinite(){
   document.getElementById("currentField").innerHTML = "Finite";
 }
 
-//----------------------USER INTERACTIONS
+//USER INTERACTIONS
 
 function mousePressed() {
   mouse = true;
@@ -268,19 +271,26 @@ function mousePressed() {
 
 function keyTyped() {
   if(key==="a"){
-    startSim();}
+    startSim();
+  }
   if(key==="s"){
-    stopSim();}
+    stopSim();
+  }
   if(key==="d"){
-    nextGen();}
+    nextGen();
+  }
   if(key==="c"){
-    clearCanvas();}
+    clearCanvas();
+  }
   if(key==="r"){
-    randomCanvas();}
+    randomCanvas();
+  }
   if(key==="t"){
-    makeTorodial();}
+    makeTorodial();
+  }
   if(key==="f"){
-    makeFinite();}
+    makeFinite();
+  }
 }
 function startSim(){
   start = true;
@@ -352,13 +362,19 @@ function canvasRes(){
   print("CANVAS SIZE WAS RESET");
 }
 function setResTo5(){
-  res=5; setup();print("RESOLUTION SET TO 5");
+  res=5; 
+  setup();
+  print("RESOLUTION SET TO 5");
 }
 function setResTo10(){
-  res=10; setup();print("RESOLUTION SET TO 10");
+  res=10; 
+  setup();
+  print("RESOLUTION SET TO 10");
 }
 function setResTo15(){
-  res=15; setup();print("RESOLUTION SET TO 15");
+  res=15; 
+  setup();
+  print("RESOLUTION SET TO 15");
 }
 function setCanvasTo400(){
   canvasHeight = 400;
@@ -392,7 +408,7 @@ function setCanvasTo(xC, yC) {
   } else if(ganzeZahl == true && positive == true) {
       canvasWidth = xC;
       canvasHeight = yC;
-      print("CANVASSIZE SET TO "+ xC + " x " + yC );
+      print(`CANVASSIZE SET TO ${xC} x ${yC}` );
       setup();
   }
 }
@@ -409,10 +425,11 @@ function setResTo(a) {
     ganzeZahl = false;
   } else if(ganzeZahl == true && positive == true) {
       res = a;
-      print("RESOLUTION SET TO "+ a);
+      print(`RESOLUTION SET TO ${a}`);
       setup();
   }
 }
+
 document.addEventListener("DOMContentLoaded", function() {
   let resSlider = document.getElementById("resolution-slider");
   resSlider.oninput = function() {
@@ -422,13 +439,24 @@ document.addEventListener("DOMContentLoaded", function() {
   };
 });
 
+function colorMode1(){
+  h1=0;s1=0;b1=0;
+  h2=0;s2=0;b2=100;
+  print("COLORMODE CHANGED TO BW");} // BW
+function colorMode2(){
+  h1=0;s1=0;b1=100;
+  h2=0;s2=0;b2=0;
+  print("COLORMODE CHANGED TO WB");} // WB
+function colorMode3(){
+  h1=0;s1=0;b1=0;
+  h2=180;s2=100;b2=100;
+  print("COLORMODE CHANGED TO QI");} // QI
 
-//-------------------INSERT PATTERNS
+//INSERT PATTERNS
 
 function insert(x,y,index){
   x = parseInt(x); //parsing string to integer 
   y = parseInt(y);
-
 
   if(index == 1){insertPattern = [[1,0,0],[1,1,1],[0,1,0]];} //rpent
   if(index == 2){insertPattern = [[1,1,1,0],[0,1,0,0],[0,1,1,1]];} //herschel
@@ -491,6 +519,7 @@ function insert(x,y,index){
   if(index == 0){insertPattern = [[0,1,0,0,0,0,0],[0,1,0,1,0,0,0],[1,0,1,0,0,0,0],[0,0,1,0,1,0,0],[0,0,0,0,1,0,1],[0,0,0,1,0,1,0],[0,0,0,0,0,1,0]]}//bi-clock
   if(index == 39){insertPattern = [[1,1,0,1,1,1,1,1,1],[1,1,0,1,1,1,1,1,1],[1,1,0,0,0,0,0,0,0],[1,1,0,0,0,0,0,1,1],[1,1,0,0,0,0,0,1,1],[1,1,0,0,0,0,0,1,1],
     [0,0,0,0,0,0,0,1,1],[1,1,1,1,1,1,0,1,1],[1,1,1,1,1,1,0,1,1]]} //kok's galaxy
+  if(index == 40){insertPattern = [[0,1,0],[0,1,1],[0,0,0],[0,0,0],[0,0,0],[0,0,1],[1,0,1],[0,0,1]]}//diehard
  
   if(x == "" || y == ""){
     alertEmpty();
