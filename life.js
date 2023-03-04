@@ -4,7 +4,7 @@ let rows;
 let res = 15; 
 let start = false; 
 let nextgen = false;
-let roundCorners = 1;
+let roundCorners = 0;
 let canvasWidth = Math.floor(window.innerWidth);  //CANVAS: Math.floor: rounds down to highest integer
 let canvasHeight = Math.floor(window.innerHeight);
 let playing = false;
@@ -145,7 +145,7 @@ function draw() {
     if(torodial == true){
       for(let i=0; i<cols; i++){
        for(let j=0; j<rows; j++){
-         let state = grid[i][j];
+          let state = grid[i][j];
 
           let sum = 0;
           let neighbors = countNeighborsTorodial(grid,i,j)
@@ -520,6 +520,7 @@ function insert(x,y,index){
   if(index == 39){insertPattern = [[1,1,0,1,1,1,1,1,1],[1,1,0,1,1,1,1,1,1],[1,1,0,0,0,0,0,0,0],[1,1,0,0,0,0,0,1,1],[1,1,0,0,0,0,0,1,1],[1,1,0,0,0,0,0,1,1],
     [0,0,0,0,0,0,0,1,1],[1,1,1,1,1,1,0,1,1],[1,1,1,1,1,1,0,1,1]]} //kok's galaxy
   if(index == 40){insertPattern = [[0,1,0],[0,1,1],[0,0,0],[0,0,0],[0,0,0],[0,0,1],[1,0,1],[0,0,1]]}//diehard
+  if(index == 41){insertPattern = [[0,1,0],[1,1,1],[1,0,0]];} //fpent
  
   if(x == "" || y == ""){
     alertEmpty();
@@ -533,13 +534,13 @@ function insert(x,y,index){
   else {
     for(let i=0; i<insertPattern.length; i++) {
       for(let j=0; j<insertPattern[i].length; j++) {
-        grid[x+i][y+j] = insertPattern[i][j];
+        grid[y+i][x+j] = insertPattern[i][j];
       }
     }
   }
 }
 function randomPattern(){
-  let r = floor(random(40));
+  let r = floor(random(42));
   let x = document.getElementById('xPos').value;
   let y = document.getElementById('yPos').value;
   if(document.getElementById('xPos').value == "" || document.getElementById('yPos').value == ""){
