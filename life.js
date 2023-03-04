@@ -521,6 +521,7 @@ function insert(x,y,index){
     [0,0,0,0,0,0,0,1,1],[1,1,1,1,1,1,0,1,1],[1,1,1,1,1,1,0,1,1]]} //kok's galaxy
   if(index == 40){insertPattern = [[0,1,0],[0,1,1],[0,0,0],[0,0,0],[0,0,0],[0,0,1],[1,0,1],[0,0,1]]}//diehard
   if(index == 41){insertPattern = [[0,1,0],[1,1,1],[1,0,0]];} //fpent
+  if(index == 42){insertPattern = [[0,0,1],[1,0,1],[0,1,1],[0,1,1],[1,0,1],[0,0,1]];} //angel
  
   if(x == "" || y == ""){
     alertEmpty();
@@ -540,7 +541,7 @@ function insert(x,y,index){
   }
 }
 function randomPattern(){
-  let r = floor(random(42));
+  let r = floor(random() * 42) + 1;
   let x = document.getElementById('xPos').value;
   let y = document.getElementById('yPos').value;
   if(document.getElementById('xPos').value == "" || document.getElementById('yPos').value == ""){
