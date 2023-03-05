@@ -541,7 +541,7 @@ function insert(x,y,index){
   }
 }
 function randomPattern(){
-  let r = floor(random() * 42) + 1;
+  let r = floor(random(43));
   let x = document.getElementById('xPos').value;
   let y = document.getElementById('yPos').value;
   if(document.getElementById('xPos').value == "" || document.getElementById('yPos').value == ""){
