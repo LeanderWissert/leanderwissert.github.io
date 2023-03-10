@@ -292,7 +292,7 @@ function keyTyped() {
     makeFinite();
   }
   if(key==="q"){
-    QI();
+    print("%c  ___                    _                     ___           _   ", 'color: aqua');print("%c / _ \\ _   _  __ _ _ __ | |_ _   _ _ __ ___   |_ _|_ __   __| |  ", 'color: aqua');print("%c| | | | | | |/ _` | '_ \\| __| | | | '_ ` _ \\   | || '_ \\ / _` |  ", 'color: aqua');print("%c| |_| | |_| | (_| | | | | |_| |_| | | | | | |  | || | | | (_| |  ", 'color: aqua');print("%c \\__\\_\\__,_|\\__,_|_| |_|\\__|\\__,_|_| |_|  |_| |___|_| |_|\\__,_/  (_)", 'color: aqua');
   }
 }
 function startSim(){
@@ -641,12 +641,4 @@ function alertEmpty(){
   } else if(r==6){
     alert("Error: Your input is as elusive as a unicorn. Please enter a value to make the game of life more real.")
   }
-}
-
-function QI(){
-  print("%c  ___                    _                      ___           _   ", 'color: aqua');
-  print("%c / _ \\ _   _  __ _ _ __ | |_ _   _ _ __ ___    |_ _|_ __   __| |  ", 'color: aqua');
-  print("%c| | | | | | |/ _` | '_ \\| __| | | | '_ ` _ \\    | || '_ \\ / _` |  ", 'color: aqua');
-  print("%c| |_| | |_| | (_| | | | | |_| |_| | | | | | |   | || | | | (_| |  ", 'color: aqua');
-  print("%c  \\__\\_\\__,_|\\__,_|_| |_|\\__|\\__,_|_| |_|  |_| |___|_| |_|\\__,_/  (_)", 'color: aqua');
 }
