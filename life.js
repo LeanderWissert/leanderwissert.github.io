@@ -39,21 +39,25 @@ var currentSource = 0;
 
 function playAudio() {
   audio.play();
+  print("MUSIC STARTED");
 }
 function pauseAudio() {
   audio.pause();
+  print("MUSIC PAUSED");
 }
 function prevAudio() {
   currentSource = (currentSource - 1 + sources.length) % sources.length;
   audio.src = sources[currentSource].src;
   audio.load();
   audio.play();
+  print("PREVIOUS SONG");
 }
 function nextAudio() {
   currentSource = (currentSource + 1) % sources.length;
   audio.src = sources[currentSource].src;
   audio.load();
   audio.play();
+  print("SONG SKIPPED");
 }
 audio.addEventListener("ended", function() {
   nextAudio();
