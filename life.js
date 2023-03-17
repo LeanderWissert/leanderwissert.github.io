@@ -31,37 +31,8 @@ document.addEventListener("DOMContentLoaded", (e) =>{
   }, 1500); 
 })
 
-//MUSIC
 
-var audio = document.getElementById("audio");
-var sources = audio.getElementsByTagName('source');
-var currentSource = 0;
 
-function playAudio() {
-  audio.play();
-  print("MUSIC STARTED");
-}
-function pauseAudio() {
-  audio.pause();
-  print("MUSIC PAUSED");
-}
-function prevAudio() {
-  currentSource = (currentSource - 1 + sources.length) % sources.length;
-  audio.src = sources[currentSource].src;
-  audio.load();
-  audio.play();
-  print("PREVIOUS SONG");
-}
-function nextAudio() {
-  currentSource = (currentSource + 1) % sources.length;
-  audio.src = sources[currentSource].src;
-  audio.load();
-  audio.play();
-  print("SONG SKIPPED");
-}
-audio.addEventListener("ended", function() {
-  nextAudio();
-});
 document.addEventListener("DOMContentLoaded", function() { 
   let volSlider = document.getElementById("volume-slider");
   volSlider.oninput = function() {
